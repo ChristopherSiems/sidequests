@@ -1,2 +1,4 @@
 fastapi==0.135.3
 uvicorn==0.43.0
+beautifulsoup4
+feedparser
