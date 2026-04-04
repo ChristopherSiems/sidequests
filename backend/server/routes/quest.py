@@ -5,7 +5,7 @@ from fastapi import APIRouter
 
 from backend.server.models.quest import Quest
 from backend.server.models.quest_request import QuestRequest
-from database import get_available_quests
+from backend.database import get_available_quests
 
 router = APIRouter()
 

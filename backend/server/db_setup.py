@@ -1,7 +1,7 @@
 from json import load
 
 from backend.server.models.quest import Quest
-from database import create_quest, get_available_quests, init_db
+from backend.database import create_quest, get_available_quests, init_db
 
 if __name__ == "__main__":
   init_db()
