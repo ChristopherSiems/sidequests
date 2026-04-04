@@ -6,4 +6,4 @@ class Quest(BaseModel):
   link: str
   start_time: int
   end_time: int
-  location: tuple[float, float]
+  location: list[float, float]

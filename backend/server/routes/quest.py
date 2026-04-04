@@ -1,3 +1,6 @@
+from json import load
+from random import choices
+
 from fastapi import APIRouter
 
 from backend.server.models.quest import Quest
@@ -8,6 +11,8 @@ router = APIRouter()
 
 @router.post("/quest", response_model=Quest)
 async def quest(quest_request: QuestRequest):
-  return Quest(
-    title="hello", link="hello", location=(0.0, 0.0), start_time=0, end_time=1
-  )
+  quest = None
+  with open("backend/server/dummy_quests.json") as f:
+    quest = choices([Quest(**quest) for quest in load(f)])[0]
+
+  return quest

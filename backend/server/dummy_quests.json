@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Morning Yoga in the Park",
+    "link": "https://example.com/morning-yoga",
+    "start_time": 1743840000,
+    "end_time": 1743843600,
+    "location": [40.7851, -73.9683]
+  },
+  {
+    "title": "Food Truck Festival",
+    "link": "https://example.com/food-truck-fest",
+    "start_time": 1743850000,
+    "end_time": 1743865600,
+    "location": [40.7580, -73.9855]
+  },
+  {
+    "title": "Live Jazz Night",
+    "link": "https://example.com/jazz-night",
+    "start_time": 1743890000,
+    "end_time": 1743900000,
+    "location": [40.7306, -73.9973]
+  },
+  {
+    "title": "Farmers Market",
+    "link": "https://example.com/farmers-market",
+    "start_time": 1743820000,
+    "end_time": 1743838000,
+    "location": [40.7614, -73.9776]
+  },
+  {
+    "title": "Outdoor Movie Screening",
+    "link": "https://example.com/outdoor-movie",
+    "start_time": 1743895000,
+    "end_time": 1743906000,
+    "location": [40.7488, -73.9680]
+  }
+  ]
