@@ -24,7 +24,7 @@ export default function LandingPage() {
       </div>
 
       <button 
-        onClick={() => getQuest(time)}
+        onClick={() => getQuest(time, [0, 0])}
         className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 cursor-pointer click:bg-blue-700">
         Find Me Something To Do
       </button>
