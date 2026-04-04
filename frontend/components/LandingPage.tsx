@@ -1,11 +1,16 @@
 "use client";
-import getQuest from "@/lib/api";
-import getDisplayTime from "@/lib/utils";
-import { useState } from "react";
 
-export default function LandingPage() {
-  const [time, setTime] = useState<number>(0);
-
+interface LandingPageProps {
+    time: number;
+    setTime: (time: number) => void;
+    setOnLanding: (onLanding: boolean) => void;
+    getNewQuest: () => void;
+}
+export default function LandingPage({time, setTime, setOnLanding, getNewQuest}: LandingPageProps) {
+    const handleFind = async () => {
+        getNewQuest();
+        setOnLanding(false);
+    }
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="flex items-center gap-2">
@@ -24,7 +29,7 @@ export default function LandingPage() {
       </div>
 
       <button 
-        onClick={() => getQuest(time, [0, 0])}
+        onClick={handleFind}
         className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 cursor-pointer click:bg-blue-700">
         Find Me Something To Do
       </button>
