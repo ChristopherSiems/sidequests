@@ -1,7 +1,18 @@
-const getQuest = async (time: number) => {
-    const response = await fetch(`${process.env.BACKEND_API_URL}/quests?time=${time}`);
-    const data = await response.json();
-    return data;
+import axios from "axios";
+
+const getQuest = async (time: number, location: [number, number]) => {
+    try{
+        const body = {
+            "time": time, 
+            "location": location
+        }
+        const response =  await axios.post(`${process.env.BACKEND_API_URL}/quests`, body);
+        const data = response.data;
+        return data;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
 }
 
 export default getQuest;
