@@ -4,7 +4,7 @@ const getQuest = async (time: number, location: [number, number]) => {
     console.log(BASE_URL);
     try{
         const body = {
-            "time": time, 
+            "minutes": time, 
             "location": location
         }
         const response =  await axios.post(`${BASE_URL}/quest`, body);
