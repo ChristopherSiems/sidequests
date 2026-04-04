@@ -7,7 +7,7 @@ router = APIRouter()
 
 
 @router.post("/quest", response_model=Quest)
-async def quest(request: QuestRequest):
+async def quest(quest_request: QuestRequest):
   return Quest(
     title="hello", link="hello", location=(0.0, 0.0), start_time=0, end_time=1
   )
