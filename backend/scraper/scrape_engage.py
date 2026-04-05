@@ -8,8 +8,8 @@ from bs4 import BeautifulSoup
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from backend.database import init_db
-
-# print(events_feed.keys())
+from database import init_db
+from llm_client import questify_posts
 
 
 def _get_posts_details(rss=None):
@@ -45,9 +45,10 @@ def _get_posts_details(rss=None):
         temp["image"] = post.enclosures[0].url if post.get("enclosures") else None
         if (
           temp["start"] is not None
-          and temp["start"] < int(datetime.now().timestamp()) + 24 * 3600
+          and temp["start"] < int(datetime.now().timestamp()) + 28 * 3600
           and temp["end"] is not None
           and temp["end"] > int(datetime.now().timestamp())
+          and temp["end"] - temp["start"] > 48 * 3600
         ):
           post_list.append(temp)
       except:
@@ -99,9 +100,9 @@ def _save_to_db(posts, db_path):
         post.get("location"),
         42.250713,
         -71.822836,
-        0,
+        post.get("min_time")
       )
-      for post in posts
+      for post in posts if post.get("min_time") >= 0 and post.get("title") != "N/A"
     ],
   )
   con.commit()
@@ -113,6 +114,7 @@ def scrape(feed_url="https://engage.clarku.edu/events.rss"):
   data = _get_posts_details(rss=feed_url)  # return blogs data as a dictionary
 
   if data is not None:
+    data = questify_posts(data)
     db_path = os.path.join(os.path.dirname(__file__), "../data/quests.db")
     _save_to_db(data, db_path)
     # entry = data["posts"][0]
