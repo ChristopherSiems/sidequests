@@ -263,13 +263,13 @@ def get_global_interactions(db_path: str = DB_PATH) -> list:
             """
     ).fetchall()
 
-  results = []
-  for row in rows:
-    interaction = dict(row)
-    interaction["embedding"] = (
-      json.loads(interaction["embedding"]) if interaction["embedding"] else []
-    )
-    results.append(interaction)
+    results = []
+    for row in rows:
+        interaction = dict(row)
+        interaction["embedding"] = (
+        json.loads(interaction["embedding"]) if interaction["embedding"] else []
+        )
+        results.append(interaction)
 
-  return results
+    return results
 
