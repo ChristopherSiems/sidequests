@@ -1,5 +1,6 @@
-backend/data/
+backend/data/*
 __pycache__/
 *.pyc
 backend/.venv
 *.db
+!backend/data/dummy
