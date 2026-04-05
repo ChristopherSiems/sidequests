@@ -11,7 +11,7 @@ interface QuestPageProps {
   quest: Quest | null;
   getNewQuest: () => void;
   time: number;
-  setTime: (time: number) => void;
+  setTime: (time: (currentTime: number) => number) => void;
   location: [number, number];
 }
 export default function QuestPage({
@@ -48,10 +48,10 @@ export default function QuestPage({
       {/* <button onClick={() => setOnLanding(true)}>Back</button> */}
       <div className="flex items-center justify-center gap-4">
 
-        
+        {!quest && <h2>No Activities Found</h2>}
         {quest && !expandedQuest && <QuestCard quest={quest} />}
         <div style={{ display: displayExpandedCard }}>
-        {quest && <ExpandedQuestCard quest={quest} directionsMap={directionsMap} />}
+        {quest && quest.location && <ExpandedQuestCard quest={quest} directionsMap={directionsMap} />}
         </div>
         
       </div>

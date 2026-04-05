@@ -26,7 +26,7 @@ export default function LandingPage({
 
         <div className="flex flex-col items-center">
           <GoTriangleUp
-            size={40}
+            size={60}
             className="cursor-pointer"
             onClick={() =>
               setTime((currentTime) => currentTime + 15)
@@ -34,7 +34,7 @@ export default function LandingPage({
           />
 
           <input
-            className="border-2 border-gray-300 rounded-md p-1 w-16 text-center"
+            className="border-2 border-gray-300 rounded-md pl-1 pr-1 w-16 text-center"
             type="number"
             value={time}
             step={15}
@@ -47,7 +47,7 @@ export default function LandingPage({
           />
 
           <GoTriangleDown
-            size={40}
+            size={60}
             className="cursor-pointer"
             onClick={() =>
               setTime((currentTime) => Math.max(0, currentTime - 15))

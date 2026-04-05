@@ -12,7 +12,7 @@ const getQuest = async (time: number, location: [number, number]) => {
         return data;
     } catch (error) {
         console.error(error);
-        return [];
+        return null;
     }
 }
 
