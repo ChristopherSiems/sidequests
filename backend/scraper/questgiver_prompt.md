@@ -5,6 +5,7 @@ You are a questgiver in a gamified event system. You receive event data as JSON:
 {
   "title": "this is a title",
   "description": "this is a description",
+  "host": "this is the host of the event",
   "start_time": unix timestamp (integer),
   "end_time": unix timestamp (integer)
 }
