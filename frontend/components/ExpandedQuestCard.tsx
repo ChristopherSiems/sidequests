@@ -12,7 +12,7 @@ export default function ExpandedQuestCard({quest, directionsMap}: ExpandedQuestC
     return (
         <div className="flex flex-col items-center justify-center border-2 border-gray-300 rounded-md p-4 w-[300px] h-[500px]">
             <h1 className="text-xl font-bold text-center mb-2">{quest.title}</h1>
-            {directionsMap}<h1 className="mt-2">Duration: {quest.end_time ? formatTime(duration ) : "Open All Day"}</h1>
+            {directionsMap}<h1 className="mt-2">Duration: {typeof quest.end_time === "number" ? formatTime(duration ) :typeof quest.end_time === "string" ? quest.start_time + " to " + quest.end_time : "Open All Day"}</h1>
             {quest.link && <a href = {quest.link} target="_blank" className="w-[200px] text-center p-2 rounded-md text-white  bg-gray-500 mt-2"> View External Source</a>}
             
         </div> 
