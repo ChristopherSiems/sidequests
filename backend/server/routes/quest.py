@@ -10,21 +10,25 @@ router = APIRouter()
 
 
 @router.post("/quest", response_model=Quest)
-async def quest(quest_request: QuestRequest):
+async def quests(quest_request: QuestRequest) -> Quest | list:
   print("location", str(quest_request))
-  quest = choices(
+  quests = choices(
     get_available_quests(
       quest_request.minutes,
       quest_request.location[0],
       quest_request.location[1],
       db_path="backend/data/quests.db",
     )
-  )[0]
-  print(quest)
+  )
+
+  if quests == []:
+    return []
+
+  print(quests)
   return Quest(
-    start_time=quest["start_time"],
-    end_time=quest["end_time"],
-    location=quest["location"],
-    title=quest["title"],
-    link=quest["link"],
+    start_time=quests[0]["start_time"],
+    end_time=quests[0]["end_time"],
+    location=quests[0]["location"],
+    title=quests[0]["title"],
+    link=quests[0]["link"],
   )
