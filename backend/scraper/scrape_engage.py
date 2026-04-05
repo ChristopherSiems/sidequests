@@ -7,9 +7,9 @@ import feedparser
 from bs4 import BeautifulSoup
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-from database import init_db
+from backend.database import init_db
 
-from llm_client import questify_posts, test_connection
+from backend.scraper.llm_client import questify_posts, test_connection
 
 
 def _get_posts_details(rss=None):
