@@ -8,7 +8,8 @@ from bs4 import BeautifulSoup
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from database import init_db
-from llm_client import questify_posts, test_connection
+
+from backend.scraper.llm_client import questify_posts, test_connection
 
 
 def _get_posts_details(rss=None):
@@ -99,9 +100,10 @@ def _save_to_db(posts, db_path):
         post.get("location"),
         42.250713,
         -71.822836,
-        post.get("min_time", 0)
+        post.get("min_time", 0),
       )
-      for post in posts if post.get("min_time", 0) > 0 and post.get("title") != "N/A"
+      for post in posts
+      if post.get("min_time", 0) > 0 and post.get("title") != "N/A"
     ],
   )
   con.commit()
@@ -129,7 +131,9 @@ def _apply_min_time(posts):
 
 
 def scrape(feed_url="https://engage.clarku.edu/events.rss"):
-  if test_connection(): # Check for connection to LM Studio so db isn't wiped if connection fails
+  if (
+    test_connection()
+  ):  # Check for connection to LM Studio so db isn't wiped if connection fails
     data = _get_posts_details(rss=feed_url)  # return blogs data as a dictionary
 
     if data is not None:
