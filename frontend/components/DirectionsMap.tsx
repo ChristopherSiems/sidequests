@@ -4,9 +4,9 @@ interface DirectionsMapProps {
     destination: string
   }
   
-  export const DirectionsMap = ({ userLat, userLng }: DirectionsMapProps) => {
-    const destination = { lat: 34.0522, lng: -118.2437 }; // Los Angeles, CA
+  export const DirectionsMap = ({ userLat, userLng ,destination}: DirectionsMapProps) => {
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    console.log(userLat, userLng, destination);
   
     const url = `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${userLat},${userLng}&destination=${destination}}`;
   

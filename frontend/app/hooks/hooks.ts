@@ -7,11 +7,13 @@ export function useLocation(): [number, number] {
 
   useEffect(() => {
     if (!navigator.geolocation) {
+      console.log("Geolocation is not supported by this browser.");
       setLocation([0, 0]);
       return;
     }
 
     const success = (position: GeolocationPosition) => {
+      console.log("Geolocation is supported by this browser.");
       setLocation([position.coords.latitude, position.coords.longitude]);
     };
 

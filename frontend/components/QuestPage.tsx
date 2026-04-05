@@ -5,7 +5,6 @@ import { isMobile } from "@/lib/utils";
 import { useState } from "react";
 import ExpandedQuestCard from "./ExpandedQuestCard";
 import { DirectionsMap } from "./DirectionsMap";
-import { useLocation } from "@/app/hooks/hooks";
 import QuestHeader from "./QuestHeader";
 interface QuestPageProps {
   setOnLanding: (onLanding: boolean) => void;
@@ -13,13 +12,14 @@ interface QuestPageProps {
   getNewQuest: () => void;
   time: number;
   setTime: (time: number) => void;
+  location: [number, number];
 }
 export default function QuestPage({
-  setOnLanding,
   quest,
   getNewQuest,
   time,
   setTime,
+  location,
 }: QuestPageProps) {
   const [expandedQuest, setExpandedQuest] = useState<boolean>(false);
   const swipeLeft = () => {
@@ -35,10 +35,10 @@ export default function QuestPage({
     onSwipedRight: swipeRight,
     trackMouse: true
   });
-  const [userLocation] = useLocation();
+  
   const isMobileEnv = isMobile();
   
-  const directionsMap = <DirectionsMap userLat={userLocation[0]} userLng={userLocation[1]} destination={quest?.location || ""} />;
+  const directionsMap = <DirectionsMap userLat={location[0]} userLng={location[1]} destination={quest?.location || ""} />;
   const displayExpandedCard =  expandedQuest? "" : "none"
   return (
     <div className="flex flex-col items-center  h-screen">

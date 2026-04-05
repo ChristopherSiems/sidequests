@@ -24,6 +24,6 @@ export default function Home() {
         getNewQuest={getNewQuest}
       />
   ) : (
-      <QuestPage setOnLanding={setOnLanding} quest={quest} getNewQuest={getNewQuest} time={time} setTime={setTime} />
+      <QuestPage setOnLanding={setOnLanding} quest={quest} getNewQuest={getNewQuest} time={time} setTime={setTime} location={userLocation}/>
     );
 }
