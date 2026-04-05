@@ -27,7 +27,7 @@ export default function LandingPage({
         <div className="flex flex-col items-center">
           <GoTriangleUp
             size={60}
-            className="cursor-pointer"
+            className="cursor-pointer click:bg-gray-200"
             onClick={() =>
               setTime((currentTime) => currentTime + 15)
             }
@@ -38,7 +38,7 @@ export default function LandingPage({
             type="number"
             value={time}
             step={15}
-            min={0}
+            min={15}
             onChange={(e) =>
               setTime(() =>
                 e.target.value === "" ? 0 : Number(e.target.value)
@@ -60,7 +60,7 @@ export default function LandingPage({
 
       <button
         onClick={handleFind}
-        className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 cursor-pointer active:bg-blue-700"
+        className="mt-4 rounded-md bg-gray-500 px-4 py-2 text-white hover:bg-gray-600 cursor-pointer active:bg-gray-700"
       >
         Find Me Something To Do
       </button>
