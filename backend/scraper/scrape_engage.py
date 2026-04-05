@@ -7,7 +7,6 @@ import feedparser
 from bs4 import BeautifulSoup
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-from backend.database import init_db
 from database import init_db
 from llm_client import questify_posts
 
@@ -100,13 +99,33 @@ def _save_to_db(posts, db_path):
         post.get("location"),
         42.250713,
         -71.822836,
-        post.get("min_time")
+        post.get("min_time", 0)
       )
-      for post in posts if post.get("min_time") >= 0 and post.get("title") != "N/A"
+      for post in posts if post.get("min_time", 0) > 0 and post.get("title") != "N/A"
     ],
   )
   con.commit()
   con.close()
+
+
+_CATEGORY_MULTIPLIERS = {
+  "spectator": 0.25,
+  "flexible": 0.50,
+  "active": 1.0,
+}
+
+
+def _apply_min_time(posts):
+  for post in posts:
+    start = post.get("start")
+    end = post.get("end")
+    category = post.get("time_category")
+    multiplier = _CATEGORY_MULTIPLIERS.get(category)
+    if start is not None and end is not None and multiplier is not None:
+      post["min_time"] = int((end - start) * multiplier)
+    else:
+      post["min_time"] = 0
+  return posts
 
 
 def scrape(feed_url="https://engage.clarku.edu/events.rss"):
@@ -115,6 +134,7 @@ def scrape(feed_url="https://engage.clarku.edu/events.rss"):
 
   if data is not None:
     data = questify_posts(data)
+    data = _apply_min_time(data)
     db_path = os.path.join(os.path.dirname(__file__), "../data/quests.db")
     _save_to_db(data, db_path)
     # entry = data["posts"][0]

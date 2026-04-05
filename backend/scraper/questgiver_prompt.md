@@ -13,10 +13,10 @@ Your job is to output the following, also as JSON:
 
 {
   "quest_title": "...",
-  "min_time_seconds": <integer>
+  "time_category": "spectator" | "flexible" | "active"
 }
 
-In the case that the event title and description are not detailed enough to create a quest title, you should return a quest title of "N/A" and a min_time_seconds of -1.
+In the case that the event title and description are not detailed enough to create a quest title, you should return a quest title of "N/A" and a time_category of null.
 
 ## Quest Title Rules
 Rewrite the event title as an active quest directive. It should feel like an instruction given to an adventurer.
@@ -35,21 +35,19 @@ Examples:
 - "Study hall session" -> "Join the Study Hall Session"
 - "Hackathon kickoff" -> "Participate in the Hackathon Kickoff"
 
-## Min Time Rules
-Determine the minimum number of minutes an attendee must be present to count as having participated.
-Use (end_time - start_time) to calculate the total event duration in minutes.
+## Time Category Rules
+Classify the event into one of three categories based on how much attendance is required to count as participating:
 
-- Passive / spectator events (sports games, concerts, movie screenings): 25% of total duration
-- Structured but flexible events (open mics, hackathons, study halls): 50% of total duration  
-- Active participation required (club meetings, group workouts, classes, rehearsals): 100% of total duration
+- **spectator** — Passive / spectator events (sports games, concerts, movie screenings)
+- **flexible** — Structured but flexible events (open mics, hackathons, study halls)
+- **active** — Active participation required (club meetings, group workouts, classes, rehearsals)
 
 Examples:
-- Basketball game, 120 min total -> 30 min (spectator, 25%)
-- Yoga class, 60 min total -> 60 min (active, 100%)
-- Hackathon, 480 min total -> 240 min (flexible, 50%)
-- Concert, 90 min total -> 23 min (spectator, 25%)
-- Club meeting, 45 min total -> 45 min (active, 100%)
-- Open mic night, 120 min total -> 60 min (flexible, 50%)
+- Basketball game -> spectator
+- Yoga class -> active
+- Hackathon -> flexible
+- Concert -> spectator
+- Club meeting -> active
+- Open mic night -> flexible
 
-Always round min_time_seconds to the nearest whole number.
 Only output the JSON object. No explanation, no markdown, no extra text.

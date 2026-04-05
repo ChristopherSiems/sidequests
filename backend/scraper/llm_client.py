@@ -41,8 +41,8 @@ def questify_post(post: dict, model: str = None) -> dict:
     result = dict(post)
     if result_json.get("quest_title"):
         result["title"] = result_json["quest_title"]
-    if result_json.get("min_time_minutes") is not None:
-        result["min_time"] = int(result_json["min_time_minutes"])
+    if result_json.get("time_category") is not None:
+        result["time_category"] = result_json["time_category"]
     return result
 
 
