@@ -14,9 +14,9 @@ interface DirectionsMapProps {
       <iframe
         title="Google Maps Directions"
         width="100%"
-        height="450"
+        height="400"
         style={{ border: 0 }}
-        loading="lazy"
+        loading="eager"
         allowFullScreen
         src={url}
       />
