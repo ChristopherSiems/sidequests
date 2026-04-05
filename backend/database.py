@@ -2,6 +2,7 @@ import sqlite3
 from contextlib import contextmanager
 import datetime
 import math
+import json
 
 DB_PATH = "quests.db"
 
@@ -18,7 +19,7 @@ def get_connection(db_path: str = DB_PATH):
     finally:
         conn.close()
 
-#initializes db
+# initializes db
 def init_db(db_path: str = DB_PATH):
     with get_connection(db_path) as conn:
         conn.executescript("""
@@ -34,7 +35,8 @@ def init_db(db_path: str = DB_PATH):
                 location    TEXT,
                 latitude    REAL    NOT NULL,
                 longitude   REAL    NOT NULL,
-                min_time    INTEGER NOT NULL
+                min_time    INTEGER NOT NULL,
+                embedding   TEXT    -- NEW: Stores JSON stringified vector array
             );
             CREATE TABLE IF NOT EXISTS POIs (
                 id          INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -52,63 +54,71 @@ def init_db(db_path: str = DB_PATH):
                 location    TEXT,
                 latitude    REAL    NOT NULL,
                 longitude   REAL    NOT NULL,
-                min_time    INTEGER NOT NULL
+                min_time    INTEGER NOT NULL,
+                embedding   TEXT    -- NEW: Stores JSON stringified vector array
+            );
+            
+            CREATE TABLE IF NOT EXISTS global_interactions (
+                id          INTEGER PRIMARY KEY AUTOINCREMENT,
+                embedding   TEXT    NOT NULL,
+                score       REAL    NOT NULL
             );
         """)
     print(f"Database initialised at '{db_path}'.")
 
-#enters an event into the db
-def create_event(
-    title: str,
-    start_time: int,
-    end_time: int,
-    location: str,
-    latitude: float,
-    longitude: float,
-    min_time: int,
-    link: str = "",
-    description: str = "",
-    categories: str = "",
-    image: str = "",
-    db_path: str = DB_PATH,
-) -> int:
+# takes embedding and score and adds to the db
+def add_interaction(embedding: list, score: float, db_path: str = DB_PATH) -> int:
+    timestamp = int(datetime.datetime.now().timestamp())
+    embedding_str = json.dumps(embedding)
+    
     with get_connection(db_path) as conn:
         cur = conn.execute(
             """
-            INSERT INTO events (title, link, description, categories, image, start_time, end_time, location, latitude, longitude, min_time)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO global_interactions (embedding, score)
+            VALUES (?, ?, ?)
             """,
-            (title, link, description, categories, image, start_time, end_time, location, latitude, longitude, min_time),
+            (embedding_str, score),
         )
     return cur.lastrowid
 
-#enters a permanent into the db, one row per day of operation
-def create_POI(
-    title: str,
-    day: str,
-    open_time: str,
-    close_time: str,
-    location: str,
-    latitude: float,
-    longitude: float,
-    min_time: int,
-    link: str = "",
-    description: str = "",
-    categories: str = "",
-    image: str = "",
-    db_path: str = DB_PATH,
+# enters an event into the db (Updated to handle embedding)
+def create_event(
+    title: str, start_time: int, end_time: int, location: str, latitude: float,
+    longitude: float, min_time: int, link: str = "", description: str = "",
+    categories: str = "", image: str = "", embedding: list = None, db_path: str = DB_PATH,
 ) -> int:
+    if embedding is None: embedding = []
+    embedding_str = json.dumps(embedding)
+    
     with get_connection(db_path) as conn:
         cur = conn.execute(
             """
-            INSERT INTO POIs (title, link, description, categories, image, open_time, close_time, day, location, latitude, longitude, min_time)
+            INSERT INTO events (title, link, description, categories, image, start_time, end_time, location, latitude, longitude, min_time, embedding)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
-            (title, link, description, categories, image, open_time, close_time, day, location, latitude, longitude, min_time),
+            (title, link, description, categories, image, start_time, end_time, location, latitude, longitude, min_time, embedding_str),
         )
     return cur.lastrowid
 
-# haversine formula: calculates straight line distance in km between two coordinate pairs in degrees
+# enters a permanent into the db (Updated to handle embedding)
+def create_POI(
+    title: str, day: str, open_time: str, close_time: str, location: str, latitude: float,
+    longitude: float, min_time: int, link: str = "", description: str = "",
+    categories: str = "", image: str = "", embedding: list = None, db_path: str = DB_PATH,
+) -> int:
+    if embedding is None: embedding = []
+    embedding_str = json.dumps(embedding)
+    
+    with get_connection(db_path) as conn:
+        cur = conn.execute(
+            """
+            INSERT INTO POIs (title, link, description, categories, image, open_time, close_time, day, location, latitude, longitude, min_time, embedding)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (title, link, description, categories, image, open_time, close_time, day, location, latitude, longitude, min_time, embedding_str),
+        )
+    return cur.lastrowid
+
 def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     R = 6371
     lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
@@ -117,17 +127,12 @@ def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
     return R * 2 * math.asin(math.sqrt(a))
 
-# estimates walking travel time in minutes assuming 5km/h
 def _travel_minutes(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     return (_haversine_km(lat1, lon1, lat2, lon2) / 5) * 60
 
-# takes in [free_time] in minutes, user coordinates, and finds all overlapping time quests from both
-# tables that the user can reasonably reach and spend [min_time] at before returning.
+# Updated to fetch the embedding and parse it back to a python list
 def get_available_quests(
-    free_time: int,
-    user_lat: float,
-    user_lon: float,
-    db_path: str = DB_PATH,
+    free_time: int, user_lat: float, user_lon: float, db_path: str = DB_PATH,
 ) -> list:
     now = datetime.datetime.now()
     now_unix = int(now.timestamp())
@@ -139,10 +144,10 @@ def get_available_quests(
     with get_connection(db_path) as conn:
         rows = conn.execute(
             """
-            SELECT id, title, link, description, categories, image, location, latitude, longitude, min_time, start_time, end_time FROM events
+            SELECT id, title, link, description, categories, image, location, latitude, longitude, min_time, start_time, end_time, embedding FROM events
             WHERE start_time < ? AND end_time > ?
             UNION
-            SELECT id, title, link, description, categories, image, location, latitude, longitude, min_time, open_time, close_time FROM POIs
+            SELECT id, title, link, description, categories, image, location, latitude, longitude, min_time, open_time, close_time, embedding FROM POIs
             WHERE day = ? AND open_time < ? AND close_time > ?
             ORDER BY title
             """,
@@ -152,8 +157,29 @@ def get_available_quests(
     results = []
     for row in rows:
         quest = dict(row)
+        
+        quest["embedding"] = json.loads(quest["embedding"]) if quest["embedding"] else []
+        
         travel_time = _travel_minutes(user_lat, user_lon, quest["latitude"], quest["longitude"])
         if (travel_time * 2) + quest["min_time"] <= free_time:
             results.append(quest)
 
+    return results
+
+# grabs all glboal interactions
+def get_global_interactions(db_path: str = DB_PATH) -> list:
+    """Fetches all global interactions for consensus processing."""
+    with get_connection(db_path) as conn:
+        rows = conn.execute(
+            """
+            SELECT embedding, score FROM global_interactions
+            """
+        ).fetchall()
+        
+    results = []
+    for row in rows:
+        interaction = dict(row)
+        interaction["embedding"] = json.loads(interaction["embedding"]) if interaction["embedding"] else []
+        results.append(interaction)
+        
     return results
