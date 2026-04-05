@@ -4,3 +4,4 @@ __pycache__/
 backend/.venv
 *.db
 !backend/data/dummy
+venv/
