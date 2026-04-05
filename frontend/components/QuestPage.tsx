@@ -36,7 +36,6 @@ export default function QuestPage({
     trackMouse: true
   });
   
-  const isMobileEnv = isMobile();
   
   const directionsMap = <DirectionsMap userLat={location[0]} userLng={location[1]} destination={quest?.location || ""} />;
   const displayExpandedCard =  expandedQuest? "" : "none"
@@ -48,31 +47,17 @@ export default function QuestPage({
       
       {/* <button onClick={() => setOnLanding(true)}>Back</button> */}
       <div className="flex items-center justify-center gap-4">
-        {!isMobileEnv && (
-          <button
-            className="cursor-pointer hover:bg-blue-500 hover:text-white rounded-md px-4 py-2"
-            onClick={() => swipeLeft()}
-          >
-            New Quest
-          </button>
-        )}
+
         
         {quest && !expandedQuest && <QuestCard quest={quest} />}
         <div style={{ display: displayExpandedCard }}>
         {quest && <ExpandedQuestCard quest={quest} directionsMap={directionsMap} />}
         </div>
-        {!isMobileEnv? !expandedQuest? (
-          <button
-            className="cursor-pointer hover:bg-blue-500 hover:text-white rounded-md px-4 py-2 w-[100px]"
-            onClick={() => swipeRight()}
-          >
-            Explore Quest
-          </button>
-        ) : <div className="w-[100px]"></div>: <> </>}
+        
       </div>
     
     </div>
-    {isMobileEnv && <h2 className="text-center text-sm mt-6 text-gray-500 pb-2" >Swipe left to get a new quest, swipe right to see the current quest</h2>}
+        <h2 className="text-center text-sm mt-6 text-gray-500 pb-8" >Swipe left to get a new quest, swipe right to see the current quest</h2>
     </div>
   );
 }

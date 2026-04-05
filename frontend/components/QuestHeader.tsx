@@ -12,7 +12,7 @@ export default function QuestHeader({time, setTime}: QuestHeaderProps) {
         
         <div className="flex flex-col items-center">
           <GoTriangleUp
-            size={40}
+            size={60}
             className="cursor-pointer"
             onClick={() =>
               setTime((currentTime) => currentTime + 15)
@@ -33,7 +33,7 @@ export default function QuestHeader({time, setTime}: QuestHeaderProps) {
           />
 
           <GoTriangleDown
-            size={40}
+            size={60}
             className="cursor-pointer"
             onClick={() =>
               setTime((currentTime) => Math.max(0, currentTime - 15))
