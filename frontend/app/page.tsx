@@ -4,13 +4,16 @@ import QuestPage from "@/components/QuestPage";
 import { Quest } from "@/interfaces/interfaces";
 import getQuest from "@/lib/api";
 import { useState } from "react";
+import { useLocation } from "./hooks/hooks";
 
 export default function Home() {
   const [quest, setQuest] = useState<Quest | null>(null);
   const [onLanding, setOnLanding] = useState<boolean>(true);
   const [time, setTime] = useState<number>(0);
+  const userLocation = useLocation();
   const getNewQuest = async () => {
-    const newQuest = await getQuest(time, [0, 0]);
+    
+    const newQuest = await getQuest(time,userLocation);
     setQuest(newQuest);
   }
   return onLanding ? (
