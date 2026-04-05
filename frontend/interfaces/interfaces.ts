@@ -6,3 +6,7 @@ export interface Quest {
     end_time: number;
     location: string;
 }
+export interface EmbeddingHistory {
+    embedding: number[];
+    score: number;
+}

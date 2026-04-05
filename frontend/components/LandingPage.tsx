@@ -1,11 +1,12 @@
 "use client";
+import { EmbeddingHistory } from "@/interfaces/interfaces";
 import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
 
 interface LandingPageProps {
   time: number;
   setTime: (time: (currentTime: number) => number) => void;
   setOnLanding: (onLanding: boolean) => void;
-  getNewQuest: () => void;
+  getNewQuest: (historyOverride?: EmbeddingHistory[]) => void | Promise<void>;
 }
 
 export default function LandingPage({
