@@ -25,16 +25,17 @@ async def quests(quest_request: QuestRequest) -> Quest | list:
   if quests == []:
     return None
 
-  print("quests", quests)
   quest = choices(quests)
 
-  print("quest", quest)
   if quest == []:
     return None
 
+  print(quest)
   return Quest(
-    start_time=quest[0]["start_time"],
-    end_time=quest[0]["end_time"],
+    start_time=quest[0]["start_time"]
+    if isinstance(quest[0]["start_time"], int)
+    else None,
+    end_time=quest[0]["end_time"] if isinstance(quest[0]["end_time"], int) else None,
     location=quest[0]["location"],
     title=quest[0]["title"],
     link=quest[0]["link"],
