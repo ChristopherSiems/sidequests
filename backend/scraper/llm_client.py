@@ -4,8 +4,26 @@ from datetime import datetime
 
 LM_STUDIO_URL = "http://127.0.0.1:1234/v1/chat/completions"
 
+def test_connection():
+    payload = {
+        "messages": [
+            {"role": "user", "content": "{\n  \"title\": \"Are you online?\",\n  \"description\": \"Respond\",\n \"start_time\": 3000\n, \n  \"end_time\": 3000\n}"},
+        ],
+        "max_tokens": 128,
+    }
+    try:
+        resp = requests.post(LM_STUDIO_URL, json=payload, timeout=30)
+        resp.raise_for_status()
+        content = resp.json()["choices"][0]["message"]["content"].strip()
+        result_json = json.loads(content)
+    except Exception as e:
+        print(f"[llm_client] Warning: could not reach LM Studio model {e}")
+        return False
 
-def questify_post(post: dict, model: str = None) -> dict:
+    return True
+
+
+def questify_post(post: dict) -> dict:
     """
     Send a post to the LM Studio questgiver prompt.
     Returns a copy of the post with 'title' replaced by quest_title
@@ -23,11 +41,8 @@ def questify_post(post: dict, model: str = None) -> dict:
         "messages": [
             {"role": "user", "content": user_message},
         ],
-        "temperature": 0.4,
         "max_tokens": 128,
     }
-    if model:
-        payload["model"] = model
 
     try:
         resp = requests.post(LM_STUDIO_URL, json=payload, timeout=30)
@@ -48,4 +63,4 @@ def questify_post(post: dict, model: str = None) -> dict:
 
 def questify_posts(posts: list[dict], model: str = None) -> list[dict]:
     """Run questify_post on each post in the list."""
-    return [questify_post(post, model=model) for post in posts]
+    return [questify_post(post) for post in posts]
