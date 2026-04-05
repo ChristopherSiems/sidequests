@@ -62,8 +62,9 @@ def get_coordinates(address: str):
 
     # 2. Fallback to Geocoder for real addresses
     try:
+        print(f"  [Geocoder] Looking up: {address}...")
         full_query = f"{address}, Worcester, MA"
-        location = geolocator.geocode(full_query, timeout=5)
+        location = geolocator.geocode(full_query, timeout=2)
         if location:
             # We return a formatted version of the address Google found
             return (location.latitude, location.longitude, f"{address}, Worcester, MA")
