@@ -16,7 +16,7 @@ def call_scrape():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-  scheduler.add_job(call_scrape, "cron", hour=22, minute=29)
+  scheduler.add_job(call_scrape, "cron", hour=0, minute=0)
   scheduler.start()
   yield
   scheduler.shutdown()
@@ -27,9 +27,7 @@ app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
   CORSMiddleware,
-  allow_origins=[
-    "http://localhost:3000",
-  ],
+  allow_origins=["http://localhost:3000", "https://sidequests-ten.vercel.app/"],
   allow_credentials=True,
   allow_methods=["*"],
   allow_headers=["*"],
