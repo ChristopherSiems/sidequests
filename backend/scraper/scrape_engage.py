@@ -4,6 +4,7 @@ import sys
 from datetime import datetime
 import json
 from backend.scraper.embed import attach_embeddings_to_quests
+from backend.scraper.get_coordinates import get_coordinates
 
 import feedparser
 from bs4 import BeautifulSoup
@@ -12,6 +13,10 @@ sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from backend.database import init_db
 
 from backend.scraper.llm_client import questify_posts, test_connection
+
+_PROMPT_PATH = os.path.join(os.path.dirname(__file__), "questgiver_prompt.md")
+with open(_PROMPT_PATH, "r") as f:
+  _SYSTEM_PROMPT = f.read()
 
 
 def _get_posts_details(rss=None):
@@ -42,9 +47,15 @@ def _get_posts_details(rss=None):
 
         temp["description"] = dr.get("p-description description")
 
+        raw_loc = dr.get("p-location location")
+        lat, lon, clean_address = get_coordinates(raw_loc)
+        temp["location"] = clean_address
+        temp["latitude"] = lat
+        temp["longitude"] = lon
+
+
         temp["start"] = dr.get_unix_time("dt-start dtstart")
         temp["end"] = dr.get_unix_time("dt-end dtend")
-        temp["location"] = dr.get("p-location location")
         temp["image"] = post.enclosures[0].url if post.get("enclosures") else None
         if (
           temp["start"] is not None
@@ -101,8 +112,8 @@ def _save_to_db(posts, db_path):
         post.get("start"),
         post.get("end"),
         post.get("location"),
-        42.250713,
-        -71.822836,
+        post.get("latitude"),
+        post.get("longitude"),
         post.get("min_time", 0),
         json.dumps(post.get("embedding", []))
       )
@@ -115,9 +126,10 @@ def _save_to_db(posts, db_path):
 
 
 _CATEGORY_MULTIPLIERS = {
-  "spectator": 0.25,
-  "flexible": 0.50,
-  "active": 1.0,
+  "no-commitment": 0.1,
+  "light-commitment": 0.25,
+  "moderate-commitment": 0.5,
+  "full-commitment": 1.0,
 }
 
 
@@ -134,24 +146,20 @@ def _apply_min_time(posts):
   return posts
 
 
+def get_posts(feed_url="https://engage.clarku.edu/events.rss"):
+  data = _get_posts_details(rss=feed_url)
+  if data is None:
+    return []
+  data = questify_posts(data, system_prompt=_SYSTEM_PROMPT)
+  data = _apply_min_time(data)
+  return attach_embeddings_to_quests(data)
+
+
 def scrape(feed_url="https://engage.clarku.edu/events.rss"):
-  if (
-    test_connection()
-  ):  # Check for connection to LM Studio so db isn't wiped if connection fails
-    data = _get_posts_details(rss=feed_url)  # return blogs data as a dictionary
-
-    if data is not None:
-      data = questify_posts(data)
-      data = _apply_min_time(data)
-      data = attach_embeddings_to_quests(data)
-      db_path = os.path.join(os.path.dirname(__file__), "../data/quests.db")
-      _save_to_db(data, db_path)
-      # entry = data["posts"][0]
-      # for key in entry.keys():
-      # print(f'Key: {key}\nData: {entry[key]}\n')
-
-    else:
-      print("None")
+  if test_connection():
+    data = get_posts(feed_url)
+    db_path = os.path.join(os.path.dirname(__file__), "../data/quests.db")
+    _save_to_db(data, db_path)
 
 
 if __name__ == "__main__":

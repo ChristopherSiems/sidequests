@@ -97,30 +97,7 @@ export default function SubmitPOI() {
 
   return (
     <>
-      {/* ── Floating trigger button ── */}
-      <button
-        onClick={() => setOpen(true)}
-        style={{
-          position: "fixed",
-          bottom: "24px",
-          right: "24px",
-          background: "#5a6472",
-          color: "#fff",
-          border: "none",
-          borderRadius: "8px",
-          padding: "10px 16px",
-          fontSize: "13px",
-          cursor: "pointer",
-          boxShadow: "0 2px 8px rgba(0,0,0,0.18)",
-          zIndex: 50,
-          letterSpacing: "0.02em",
-        }}
-      >
-        + Submit a Place
-      </button>
-
-      {/* ── Modal overlay ── */}
-      {open && (
+      
         <div
           onClick={(e) => e.target === e.currentTarget && setOpen(false)}
           style={{
@@ -200,7 +177,6 @@ export default function SubmitPOI() {
             </div>
           </div>
         </div>
-      )}
     </>
   );
 }
