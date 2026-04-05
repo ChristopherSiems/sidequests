@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from database import init_db
 
-from backend.scraper.llm_client import questify_posts, test_connection
+from llm_client import questify_posts, test_connection
 
 
 def _get_posts_details(rss=None):
@@ -33,6 +33,7 @@ def _get_posts_details(rss=None):
       try:
         temp["title"] = post.title
         temp["link"] = post.link
+        temp["host"] = post.host
         temp["categories"] = [tag.term for tag in post.get("tags", [])]
 
         dr = description_reader(post.summary)
@@ -51,8 +52,8 @@ def _get_posts_details(rss=None):
           and temp["end"] - temp["start"] < 48 * 3600
         ):
           post_list.append(temp)
-      except:
-        print("error parsing rss")
+      except Exception as e:
+        print(f"[Scraper] Error parsing RSS feed: {e}")
 
     return post_list
   else:

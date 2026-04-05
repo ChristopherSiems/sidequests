@@ -33,6 +33,7 @@ def questify_post(post: dict) -> dict:
     user_message = json.dumps({
         "title": post.get("title", ""),
         "description": post.get("description", ""),
+        "host": post.get("host", ""),
         "start_time": post.get("start"),
         "end_time": post.get("end"),
     })
