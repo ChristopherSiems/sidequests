@@ -18,7 +18,7 @@ Your job is to output the following, also as JSON:
 
 {
   "quest_title": "...",
-  "time_category": "spectator" | "flexible" | "active"
+  "time_category": "no-commitment" | "light-commitment" | "moderate-commitment" | "full-commitment"
 }
 
 ## Quest Title Rules
@@ -46,19 +46,26 @@ Examples:
 Before you send your response, reread your quest title. If it is not clear from the title what the event is, you should return a quest title of "N/A" and a time_category of null. 
 
 ## Time Category Rules
-Classify the event into one of three categories based on how much attendance is required to count as participating:
+Classify the event into one of four categories based on how much of the event a participant is expected to attend.
 
-- **spectator** — Passive / spectator events (sports games, concerts, movie screenings)
-- **flexible** — Structured but flexible events (open mics, hackathons, study halls)
-- **active** — Active participation required (club meetings, group workouts, classes, rehearsals)
+- **no-commitment** — Expect to spend a few minutes, leave whenever (open study halls, tabling events, club fairs)
+- **light-commitment** — Expect to spend 15–25 minutes; leaving early is no issue (open mics, casual interest meetings)
+- **moderate-commitment** — Expect to attend most or all of the event; leaving early is fine but reduces enjoyment (sports games, concerts, movie screenings, lectures)
+- **full-commitment** — Expected to attend the full event; leaving early is disruptive (club meetings, classes, group workouts, hackathon kickoffs, workshops)
 
 Examples:
-- Basketball game -> spectator
-- Yoga class -> active
-- Hackathon -> flexible
-- Concert -> spectator
-- Club meeting -> active
-- Open mic night -> flexible
+- Club fair -> no-commitment
+- Study hall -> no-commitment
+- Open mic night -> light-commitment
+- General interest meeting -> light-commitment
+- Basketball game -> moderate-commitment
+- Concert -> moderate-commitment
+- Movie screening -> moderate-commitment
+- Lecture -> moderate-commitment
+- Hackathon kickoff -> full-commitment
+- Yoga class -> full-commitment
+- Club meeting -> full-commitment
+- Workshop -> full-commitment
 
 Only output the JSON object. No explanation, no markdown, no extra text.
 
