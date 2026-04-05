@@ -4,34 +4,34 @@
     "link": "https://example.com/morning-yoga",
     "start_time": 1775338373,
     "end_time": 1775538373,
-    "location": [40.7851, -73.9683]
+    "location": "address" 
   },
   {
     "title": "Food Truck Festival",
     "link": "https://example.com/food-truck-fest",
     "start_time": 1775338373,
     "end_time": 1775538373,
-    "location": [40.7580, -73.9855]
+    "location": "address"
   },
   {
     "title": "Live Jazz Night",
     "link": "https://example.com/jazz-night",
     "start_time": 1775338373,
     "end_time": 1775538373,
-    "location": [40.7306, -73.9973]
+    "location": "address"
   },
   {
     "title": "Farmers Market",
     "link": "https://example.com/farmers-market",
     "start_time": 1775338373,
     "end_time": 1775538373,
-    "location": [40.7614, -73.9776]
+    "location": "address"
   },
   {
     "title": "Outdoor Movie Screening",
     "link": "https://example.com/outdoor-movie",
     "start_time": 1775338373,
     "end_time": 1775538373,
-    "location": [40.7488, -73.9680]
+    "location": "address"
   }
 ]

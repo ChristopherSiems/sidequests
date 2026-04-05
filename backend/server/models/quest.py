@@ -2,8 +2,8 @@ from pydantic import BaseModel
 
 
 class Quest(BaseModel):
-  title: str
-  link: str
   start_time: int
   end_time: int
-  location: list[float, float]
+  location: str
+  title: str
+  link: str | None = None
