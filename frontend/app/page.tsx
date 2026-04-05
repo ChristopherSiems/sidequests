@@ -9,7 +9,7 @@ import { useLocation } from "./hooks/hooks";
 export default function Home() {
   const [quest, setQuest] = useState<Quest | null>(null);
   const [onLanding, setOnLanding] = useState<boolean>(true);
-  const [time, setTime] = useState<number>(0);
+  const [time, setTime] = useState<number>(15);
   const userLocation = useLocation();
   const getNewQuest = async () => {
     
