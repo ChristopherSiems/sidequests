@@ -9,14 +9,14 @@ from backend.server.routes.pois import router as pois_router
 from backend.server.routes.quest import router as quest_router
 
 
-def call_scrape():
-  print("scraping")
-  scrape()
+# def call_scrape():
+  # print("scraping")
+  # scrape()
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-  scheduler.add_job(call_scrape, "cron", hour=22, minute=29)
+  # scheduler.add_job(call_scrape, "cron", hour=22, minute=29)
   scheduler.start()
   yield
   scheduler.shutdown()

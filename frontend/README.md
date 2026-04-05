@@ -35,4 +35,4 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-Se tNEXT_PUBLIC_BACKEND_API_URL= http://127.0.0.1:8000 for local host in .env
+Set NEXT_PUBLIC_BACKEND_API_URL= http://127.0.0.1:8000 for local host in .env
