@@ -37,7 +37,9 @@ export default function QuestPage({
     const entry = { embedding: quest?.embedding || [], score: -1 };
     const nextHistory = [...embeddingHistory, entry];
     setEmbeddingHistory(nextHistory);
-    addInteraction(quest?.embedding || [], -1);
+    if (quest?.embedding && quest?.embedding.length > 0){
+        setEmbeddingHistory([...embeddingHistory, { embedding: quest.embedding, score: -1 }])
+    }
     void getNewQuest(nextHistory);
   };
 
@@ -45,7 +47,10 @@ export default function QuestPage({
     console.log("right");
     setExpandedQuest(true);
     addInteraction(quest?.embedding || [], 1);
-    setEmbeddingHistory([...embeddingHistory, { embedding: quest?.embedding || [], score: 1 }])
+    if (quest?.embedding && quest?.embedding.length > 0){
+        setEmbeddingHistory([...embeddingHistory, { embedding: quest.embedding, score: 1 }])
+    }
+   
   };
   const handlers = useSwipeable({
     onSwipedLeft: swipeLeft,
@@ -56,10 +61,10 @@ export default function QuestPage({
     const directionsMap = <DirectionsMap userLat={location[0]} userLng={location[1]} destination={quest?.location || ""} />;
   const displayExpandedCard =  expandedQuest? "" : "none"
   return (
-    <div className="flex flex-col items-center  h-screen">
+    <div className="flex min-h-0 flex-col items-center h-screen">
         <QuestHeader time={time} setTime={setTime} />
    
-    <div {...handlers} className="flex flex-col items-center justify-center h-full">
+    <div {...handlers} className="flex min-h-0 w-full flex-1 flex-col items-center justify-center">
       
       {/* <button onClick={() => setOnLanding(true)}>Back</button> */}
       <div className="flex items-center justify-center gap-4">
