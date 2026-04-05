@@ -1,4 +1,5 @@
 export interface Quest {
+    embedding: number[];
     title: string;
     link?: string;
     start_time: number;
