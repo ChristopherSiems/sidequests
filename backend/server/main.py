@@ -15,7 +15,7 @@ def call_scrape():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-  scheduler.add_job(scrape, "cron", hour=20, minute=59)
+  scheduler.add_job(call_scrape, "cron", hour=22, minute=29)
   scheduler.start()
   yield
   scheduler.shutdown()
@@ -23,7 +23,6 @@ async def lifespan(app: FastAPI):
 
 scheduler = AsyncIOScheduler()
 app = FastAPI(lifespan=lifespan)
-
 
 app.add_middleware(
   CORSMiddleware,
