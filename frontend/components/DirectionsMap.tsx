@@ -8,7 +8,7 @@ interface DirectionsMapProps {
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
     console.log(userLat, userLng, destination);
   
-    const url = `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${userLat},${userLng}&destination=${destination}}`;
+    const url = `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${userLat},${userLng}&destination=${destination}&mode=walking`;
   
     return (
       <iframe
