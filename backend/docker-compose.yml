@@ -1,0 +1,8 @@
+services:
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./quests.db:/app/quests.db
+    restart: unless-stopped
