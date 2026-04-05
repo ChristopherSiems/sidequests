@@ -47,7 +47,7 @@ def _get_posts_details(rss=None):
           and temp["start"] < int(datetime.now().timestamp()) + 28 * 3600
           and temp["end"] is not None
           and temp["end"] > int(datetime.now().timestamp())
-          and temp["end"] - temp["start"] > 48 * 3600
+          and temp["end"] - temp["start"] < 48 * 3600
         ):
           post_list.append(temp)
       except:
