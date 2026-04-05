@@ -50,7 +50,18 @@ CAMPUS_LOCATIONS = {
     "online": (42.2510, -71.8232, "Virtual / Online Event"),
 }
 
+def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    R = 6371
+    lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+    return R * 2 * math.asin(math.sqrt(a))
+
+
+
 CLARK_LAT, CLARK_LON = 42.2510, -71.8232
+MAX_KM = 10
 
 def get_coordinates(address: str):
     address_lower = address.lower().strip()
@@ -66,8 +77,12 @@ def get_coordinates(address: str):
         full_query = f"{address}, Worcester, MA"
         location = geolocator.geocode(full_query, timeout=2)
         if location:
+            km = _haversine_km(CLARK_LAT, CLARK_LON, location.latitude, location.longitude)
+            if km <= MAX_KM:
+                return (location.latitude, location.longitude, f"{address}, Worcester, MA")
+            else:
+                raise ValueError(f"'{address}' geocoded too far ({km:.1f}km from Clark)")
             # We return a formatted version of the address Google found
-            return (location.latitude, location.longitude, f"{address}, Worcester, MA")
     except Exception:
         pass
     
