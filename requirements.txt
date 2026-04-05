@@ -5,3 +5,5 @@ feedparser
 apscheduler
 requests
 geopy
+numpy
+scikit-learn
