@@ -78,7 +78,9 @@ export default function QuestPage({
       </div>
     
     </div>
-        <h2 className="text-center text-sm mt-6 text-gray-500 pb-8" >Swipe left to get a new quest, swipe right to see the current quest</h2>
+        <h2 className="text-center text-sm mt-6 text-gray-500 pb-8">
+          Swipe left to get a new quest, swipe right to see the current quest
+        </h2>
     </div>
   );
 }
