@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.scraper.scrape_engage import scrape
+from backend.server.routes.pois import router as pois_router
 from backend.server.routes.quest import router as quest_router
 
 
@@ -34,3 +35,4 @@ app.add_middleware(
   allow_headers=["*"],
 )
 app.include_router(quest_router)
+app.include_router(pois_router)
