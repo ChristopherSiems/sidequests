@@ -1,5 +1,3 @@
-from random import choices
-
 from fastapi import APIRouter
 
 from backend.database import get_available_quests
@@ -7,13 +5,12 @@ from backend.server.models.quest import Quest
 from backend.server.models.quest_request import QuestRequest
 from backend.server.models.interaction_request import InteractionRequest
 from backend.database import add_interaction
-
+from backend.recommender.recommender import get_best_quest
 router = APIRouter()
 
 
 @router.post("/quest", response_model=Quest | None)
 async def quests(quest_request: QuestRequest) -> Quest | list:
-  print(str(quest_request))
 
   quests = get_available_quests(
     quest_request.minutes,
@@ -21,24 +18,24 @@ async def quests(quest_request: QuestRequest) -> Quest | list:
     quest_request.location[1],
     db_path="backend/data/quests.db",
   )
-
+  print("quests----", len(quests))
   if quests == []:
     return None
 
-  quest = choices(quests)
+  
+  quest = get_best_quest(quests, quest_request.embedding_history)
 
-  if quest == []:
+
+  if quest is None:
     return None
 
-  print(quest)
   return Quest(
-    start_time=quest[0]["start_time"]
-    if isinstance(quest[0]["start_time"], int)
-    else None,
-    end_time=quest[0]["end_time"] if isinstance(quest[0]["end_time"], int) else None,
-    location=quest[0]["location"],
-    title=quest[0]["title"],
-    link=quest[0]["link"],
+    start_time=quest["start_time"],
+    end_time=quest["end_time"],
+    location=quest["location"],
+    title=quest["title"],
+    link=quest["link"],
+    embedding=quest["embedding"],
   )
 
 

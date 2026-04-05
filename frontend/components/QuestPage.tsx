@@ -7,32 +7,45 @@ import ExpandedQuestCard from "./ExpandedQuestCard";
 import { DirectionsMap } from "./DirectionsMap";
 import QuestHeader from "./QuestHeader";
 import { addInteraction } from "@/lib/api";
+import { useLocalStorage } from 'usehooks-ts'
+import { EmbeddingHistory } from "@/interfaces/interfaces";
 interface QuestPageProps {
   setOnLanding: (onLanding: boolean) => void;
   quest: Quest | null;
-  getNewQuest: () => void;
+  getNewQuest: (historyOverride?: EmbeddingHistory[]) => void | Promise<void>;
   time: number;
   setTime: (time: (currentTime: number) => number) => void;
   location: [number, number];
+  embeddingHistory: EmbeddingHistory[];
+  setEmbeddingHistory: (embeddingHistory: EmbeddingHistory[]) => void;
 }
+
 export default function QuestPage({
   quest,
   getNewQuest,
   time,
   setTime,
   location,
+  embeddingHistory,
+  setEmbeddingHistory,
 }: QuestPageProps) {
   const [expandedQuest, setExpandedQuest] = useState<boolean>(false);
+
+
   const swipeLeft = () => {
-    getNewQuest();
     setExpandedQuest(false);
+    const entry = { embedding: quest?.embedding || [], score: -1 };
+    const nextHistory = [...embeddingHistory, entry];
+    setEmbeddingHistory(nextHistory);
     addInteraction(quest?.embedding || [], -1);
+    void getNewQuest(nextHistory);
   };
 
   const swipeRight = () => {
     console.log("right");
     setExpandedQuest(true);
     addInteraction(quest?.embedding || [], 1);
+    setEmbeddingHistory([...embeddingHistory, { embedding: quest?.embedding || [], score: 1 }])
   };
   const handlers = useSwipeable({
     onSwipedLeft: swipeLeft,
@@ -40,8 +53,7 @@ export default function QuestPage({
     trackMouse: true
   });
   
-  
-  const directionsMap = <DirectionsMap userLat={location[0]} userLng={location[1]} destination={quest?.location || ""} />;
+    const directionsMap = <DirectionsMap userLat={location[0]} userLng={location[1]} destination={quest?.location || ""} />;
   const displayExpandedCard =  expandedQuest? "" : "none"
   return (
     <div className="flex flex-col items-center  h-screen">

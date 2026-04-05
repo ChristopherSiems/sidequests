@@ -9,19 +9,28 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "data", "quests.db")
 os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
 
+def _migrate_global_interactions(conn: sqlite3.Connection) -> None:
+    cols = {row[1] for row in conn.execute("PRAGMA table_info(global_interactions)")}
+    if cols and "quest_id" not in cols:
+        conn.execute("ALTER TABLE global_interactions ADD COLUMN quest_id INTEGER")
+
 
 @contextmanager
 def get_connection(db_path: str = DB_PATH):
-  conn = sqlite3.connect(db_path)
-  conn.row_factory = sqlite3.Row
-  try:
-    yield conn
-    conn.commit()
-  except Exception:
-    conn.rollback()
-    raise
-  finally:
-    conn.close()
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    try:
+        try:
+            _migrate_global_interactions(conn)
+        except sqlite3.OperationalError:
+            pass
+        yield conn
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
 
 
 # initializes db
@@ -66,25 +75,31 @@ def init_db(db_path: str = DB_PATH):
             CREATE TABLE IF NOT EXISTS global_interactions (
                 id          INTEGER PRIMARY KEY AUTOINCREMENT,
                 embedding   TEXT    NOT NULL,
-                score       INTEGER    NOT NULL
+                score       INTEGER    NOT NULL,
+                quest_id    INTEGER
             );
         """)
   print(f"Database initialised at '{db_path}'.")
 
 
 # takes embedding and score and adds to the db
-def add_interaction(embedding: list, score: int, db_path: str = DB_PATH) -> int:
-  embedding_str = json.dumps(embedding)
+def add_interaction(
+    embedding: list,
+    score: int,
+    quest_id: int | None = None,
+    db_path: str = DB_PATH,
+) -> int:
+    embedding_str = json.dumps(embedding)
 
-  with get_connection(db_path) as conn:
-    cur = conn.execute(
-      """
-            INSERT INTO global_interactions (embedding, score)
-            VALUES (?, ?)
+    with get_connection(db_path) as conn:
+        cur = conn.execute(
+            """
+            INSERT INTO global_interactions (embedding, score, quest_id)
+            VALUES (?, ?, ?)
             """,
-      (embedding_str, score),
-    )
-  return cur.lastrowid
+            (embedding_str, score, quest_id),
+        )
+    return cur.lastrowid
 
 
 # enters an event into the db (Updated to handle embedding)
@@ -241,20 +256,20 @@ def get_available_quests(
 
 # grabs all glboal interactions
 def get_global_interactions(db_path: str = DB_PATH) -> list:
-  with get_connection(db_path) as conn:
-    rows = conn.execute(
-      """
-            SELECT embedding, score FROM global_interactions
+    with get_connection(db_path) as conn:
+        rows = conn.execute(
+            """
+            SELECT embedding, score, quest_id FROM global_interactions
             """
     ).fetchall()
 
-  results = []
-  for row in rows:
-    interaction = dict(row)
-    interaction["embedding"] = (
-      json.loads(interaction["embedding"]) if interaction["embedding"] else []
-    )
-    results.append(interaction)
+    results = []
+    for row in rows:
+        interaction = dict(row)
+        interaction["embedding"] = (
+        json.loads(interaction["embedding"]) if interaction["embedding"] else []
+        )
+        results.append(interaction)
 
-  return results
+    return results
 

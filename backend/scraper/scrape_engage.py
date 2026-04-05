@@ -48,7 +48,13 @@ def _get_posts_details(rss=None):
         temp["description"] = dr.get("p-description description")
 
         raw_loc = dr.get("p-location location")
-        lat, lon, clean_address = get_coordinates(raw_loc)
+        coords = get_coordinates(raw_loc)
+        
+        if coords is None:
+            print(f"  [Scraper] Skipping '{temp['title']}' - Location outside Worcester area.")
+            continue 
+
+        lat, lon, clean_address = coords
         temp["location"] = clean_address
         temp["latitude"] = lat
         temp["longitude"] = lon

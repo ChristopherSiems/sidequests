@@ -9,14 +9,14 @@ from backend.server.routes.pois import router as pois_router
 from backend.server.routes.quest import router as quest_router
 
 
-def call_scrape():
-  print("scraping")
-  scrape()
+# def call_scrape():
+  # print("scraping")
+  # scrape()
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-  scheduler.add_job(call_scrape, "cron", hour=0, minute=0)
+  # scheduler.add_job(call_scrape, "cron", hour=22, minute=29)
   scheduler.start()
   yield
   scheduler.shutdown()
@@ -27,7 +27,9 @@ app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
   CORSMiddleware,
-  allow_origins=["http://localhost:3000", "https://sidequests-ten.vercel.app/"],
+  allow_origins=[
+    "http://localhost:3000",
+  ],
   allow_credentials=True,
   allow_methods=["*"],
   allow_headers=["*"],

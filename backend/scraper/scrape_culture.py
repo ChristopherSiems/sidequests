@@ -109,6 +109,15 @@ def _get_posts_details(rss=None):
 
       temp["location"], temp["latitude"], temp["longitude"] = _get_location(post.link)
 
+      if temp["latitude"] is None or temp["longitude"] is None:
+          print(f"  [Scraper] Skipping '{temp['title']}' - No location found.")
+          continue
+
+      from backend.scraper.get_coordinates import _haversine_km, CLARK_LAT, CLARK_LON, MAX_KM
+      if _haversine_km(CLARK_LAT, CLARK_LON, temp["latitude"], temp["longitude"]) > MAX_KM:
+          print(f"  [Scraper] Skipping '{temp['title']}' - Location outside Worcester area.")
+          continue
+
       temp["start"], temp["end"] = _parse_date_range(post.summary)
 
       now = int(datetime.now().timestamp())
@@ -146,8 +155,8 @@ def _save_to_db(posts, db_path):
         post.get("start"),
         post.get("end"),
         post.get("location"),
-        post.get("latitude") or 42.250713,
-        post.get("longitude") or -71.822836,
+        post.get("latitude"),
+        post.get("longitude"),
         post.get("min_time", 0),
         json.dumps(post.get("embedding", [])),
       )
