@@ -13,10 +13,10 @@ Your job is to output the following, also as JSON:
 
 {
   "quest_title": "...",
-  "min_time_minutes": <integer>
+  "min_time_seconds": <integer>
 }
 
-In the case that the event title and description are not detailed enough to create a quest title, you should return a quest title of "N/A" and a min_time_minutes of -1.
+In the case that the event title and description are not detailed enough to create a quest title, you should return a quest title of "N/A" and a min_time_seconds of -1.
 
 ## Quest Title Rules
 Rewrite the event title as an active quest directive. It should feel like an instruction given to an adventurer.
@@ -51,5 +51,5 @@ Examples:
 - Club meeting, 45 min total -> 45 min (active, 100%)
 - Open mic night, 120 min total -> 60 min (flexible, 50%)
 
-Always round min_time_minutes to the nearest whole number.
+Always round min_time_seconds to the nearest whole number.
 Only output the JSON object. No explanation, no markdown, no extra text.
