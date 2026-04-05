@@ -1,29 +1,15 @@
-"use client";
-import { GoTriangleUp, GoTriangleDown } from "react-icons/go";
+import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 
-interface LandingPageProps {
-  time: number;
-  setTime: (time: (currentTime: number) => number) => void;
-  setOnLanding: (onLanding: boolean) => void;
-  getNewQuest: () => void;
+interface QuestHeaderProps {
+    time: number;
+    setTime: (time: (currentTime: number) => number) => void;
 }
-
-export default function LandingPage({
-  time,
-  setTime,
-  setOnLanding,
-  getNewQuest,
-}: LandingPageProps) {
-  const handleFind = async () => {
-    getNewQuest();
-    setOnLanding(false);
-  };
-
-  return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div className="flex items-center gap-3">
-        <h1>I have</h1>
-
+export default function QuestHeader({time, setTime}: QuestHeaderProps) {
+    return (
+        <div className="flex flex-col items-center justify-center pt-12">
+      <div className="flex items-center gap-2">
+        <h1 className="text-xl font-bold">Showing activities for</h1>
+        
         <div className="flex flex-col items-center">
           <GoTriangleUp
             size={40}
@@ -54,16 +40,9 @@ export default function LandingPage({
             }
           />
         </div>
-
-        <h1>minutes</h1>
+        <h1 className="text-xl font-bold">minutes</h1>
       </div>
 
-      <button
-        onClick={handleFind}
-        className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 cursor-pointer active:bg-blue-700"
-      >
-        Find Me Something To Do
-      </button>
     </div>
-  );
+    )
 }

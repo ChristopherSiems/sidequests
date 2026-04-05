@@ -1,7 +1,7 @@
 export interface Quest {
     title: string;
-    link: string;
+    link?: string;
     start_time: number;
     end_time: number;
-    location: [number, number];
+    location: string;
 }

@@ -14,13 +14,13 @@ export default function Home() {
     setQuest(newQuest);
   }
   return onLanding ? (
-    <LandingPage
-      time={time}
-      setTime={setTime}
-      setOnLanding={setOnLanding}
-      getNewQuest={getNewQuest}
-    />
+      <LandingPage
+        time={time}
+        setTime={setTime}
+        setOnLanding={setOnLanding}
+        getNewQuest={getNewQuest}
+      />
   ) : (
-      <QuestPage setOnLanding={setOnLanding} quest={quest} getNewQuest={getNewQuest} />
+      <QuestPage setOnLanding={setOnLanding} quest={quest} getNewQuest={getNewQuest} time={time} setTime={setTime} />
     );
 }
