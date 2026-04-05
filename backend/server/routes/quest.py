@@ -9,7 +9,7 @@ from backend.server.models.quest_request import QuestRequest
 router = APIRouter()
 
 
-@router.post("/quest", response_model=Quest)
+@router.post("/quest", response_model=Quest | None)
 async def quests(quest_request: QuestRequest) -> Quest | list:
   print(str(quest_request))
 
