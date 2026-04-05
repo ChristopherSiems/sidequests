@@ -61,21 +61,20 @@ def init_db(db_path: str = DB_PATH):
             CREATE TABLE IF NOT EXISTS global_interactions (
                 id          INTEGER PRIMARY KEY AUTOINCREMENT,
                 embedding   TEXT    NOT NULL,
-                score       REAL    NOT NULL
+                score       INTEGER    NOT NULL
             );
         """)
     print(f"Database initialised at '{db_path}'.")
 
 # takes embedding and score and adds to the db
-def add_interaction(embedding: list, score: float, db_path: str = DB_PATH) -> int:
-    timestamp = int(datetime.datetime.now().timestamp())
+def add_interaction(embedding: list, score: int, db_path: str = DB_PATH) -> int:
     embedding_str = json.dumps(embedding)
     
     with get_connection(db_path) as conn:
         cur = conn.execute(
             """
             INSERT INTO global_interactions (embedding, score)
-            VALUES (?, ?, ?)
+            VALUES (?, ?)
             """,
             (embedding_str, score),
         )
@@ -168,7 +167,6 @@ def get_available_quests(
 
 # grabs all glboal interactions
 def get_global_interactions(db_path: str = DB_PATH) -> list:
-    """Fetches all global interactions for consensus processing."""
     with get_connection(db_path) as conn:
         rows = conn.execute(
             """
