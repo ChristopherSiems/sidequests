@@ -13,31 +13,16 @@ from llm_client import enrich_posts
 # print(events_feed.keys())
 
 
-def get_posts_details(rss=None):
-<<<<<<< HEAD
+def _get_posts_details(rss=None):
   """
   Take link of rss feed as argument
   """
   if rss is not None:
     # parsing blog feed
-    blog_feed = blog_feed = feedparser.parse(rss)
-=======
-	"""
-	Take link of rss feed as argument
-	"""
-	if rss is not None:
-		# parsing blog feed
-		blog_feed = feedparser.parse(rss)
->>>>>>> 42fb093 (Begin integrating scraper with calls to local LLM)
+    blog_feed = feedparser.parse(rss)
 
     # getting lists of blog entries via .entries
     posts = blog_feed.entries
-
-    # dictionary for holding posts details
-    posts_details = {
-      "Blog title": blog_feed.feed.title,
-      "Blog link": blog_feed.feed.link,
-    }
 
     post_list = []
 
@@ -69,10 +54,7 @@ def get_posts_details(rss=None):
       except:
         print("error parsing rss")
 
-    # storing lists of posts in the dictionary
-    posts_details["posts"] = post_list
-
-    return posts_details
+    return post_list
   else:
     return None
 
@@ -95,16 +77,16 @@ class description_reader:
     return None
 
 
-def save_to_db(posts, db_path):
+def _save_to_db(posts, db_path):
   init_db(db_path)
   con = sqlite3.connect(db_path)
   cur = con.cursor()
-  cur.execute("DELETE FROM quests")
+  cur.execute("DELETE FROM events")
   cur.executemany(
     """
-		INSERT INTO quests
-		(title, link, description, categories, image, start_time, end_time, location)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+		INSERT INTO events
+		(title, link, description, categories, image, start_time, end_time, location, latitude, longitude, min_time)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	""",
     [
       (
@@ -116,6 +98,9 @@ def save_to_db(posts, db_path):
         post.get("start"),
         post.get("end"),
         post.get("location"),
+        42.250713,
+        -71.822836,
+        0
       )
       for post in posts
     ],
@@ -124,17 +109,19 @@ def save_to_db(posts, db_path):
   con.close()
 
 
-if __name__ == "__main__":
-  feed_url = "https://engage.clarku.edu/events.rss"
+def scrape(feed_url="https://engage.clarku.edu/events.rss"):
 
-  data = get_posts_details(rss=feed_url)  # return blogs data as a dictionary
+  data = _get_posts_details(rss=feed_url)  # return blogs data as a dictionary
 
-  if data:
-    db_path = os.path.join(os.path.dirname(__file__), "../data/events.db")
-    save_to_db(data["posts"], db_path)
+  if data is not None:
+    db_path = os.path.join(os.path.dirname(__file__), "../data/quests.db")
+    _save_to_db(data, db_path)
     # entry = data["posts"][0]
     # for key in entry.keys():
     # print(f'Key: {key}\nData: {entry[key]}\n')
 
   else:
     print("None")
+
+if __name__ == "__main__":
+  scrape()
