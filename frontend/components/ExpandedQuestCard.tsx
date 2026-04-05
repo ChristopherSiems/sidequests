@@ -8,6 +8,7 @@ interface ExpandedQuestCardProps {
 export default function ExpandedQuestCard({quest, directionsMap}: ExpandedQuestCardProps) {
     const duration =(quest.end_time - quest.start_time) //<  100 * 60 * 60 ? (quest.end_time - quest.start_time) : 120*60;
     // const timeRemaining   /= Math.min(duration, quest.end_time - Date.now()/1000);
+    console.log("quest", quest, duration);
     return (
         <div className="flex flex-col items-center justify-center border-2 border-gray-300 rounded-md p-4 w-[300px] h-[500px]">
             <h1 className="text-xl font-bold text-center mb-2">{quest.title}</h1>
