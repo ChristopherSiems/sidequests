@@ -1,6 +1,7 @@
 import sqlite3
 from contextlib import contextmanager
 import datetime
+import math
 
 DB_PATH = "quests.db"
 
@@ -30,9 +31,12 @@ def init_db(db_path: str = DB_PATH):
                 image       TEXT,
                 start_time  INTEGER NOT NULL,
                 end_time    INTEGER NOT NULL,
-                location    TEXT    NOT NULL
+                location    TEXT,
+                latitude    REAL    NOT NULL,
+                longitude   REAL    NOT NULL,
+                min_time    INTEGER NOT NULL
             );
-            CREATE TABLE IF NOT EXISTS permanents (
+            CREATE TABLE IF NOT EXISTS POIs (
                 id          INTEGER PRIMARY KEY AUTOINCREMENT,
                 title       TEXT    NOT NULL,
                 link        TEXT,
@@ -45,7 +49,10 @@ def init_db(db_path: str = DB_PATH):
                                 'Monday','Tuesday','Wednesday',
                                 'Thursday','Friday','Saturday','Sunday'
                             )),
-                location    TEXT    NOT NULL
+                location    TEXT,
+                latitude    REAL    NOT NULL,
+                longitude   REAL    NOT NULL,
+                min_time    INTEGER NOT NULL
             );
         """)
     print(f"Database initialised at '{db_path}'.")
@@ -53,9 +60,12 @@ def init_db(db_path: str = DB_PATH):
 #enters an event into the db
 def create_event(
     title: str,
-    location: str,
     start_time: int,
     end_time: int,
+    location: str,
+    latitude: float,
+    longitude: float,
+    min_time: int,
     link: str = "",
     description: str = "",
     categories: str = "",
@@ -65,20 +75,23 @@ def create_event(
     with get_connection(db_path) as conn:
         cur = conn.execute(
             """
-            INSERT INTO events (title, link, description, categories, image, start_time, end_time, location)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO events (title, link, description, categories, image, start_time, end_time, location, latitude, longitude, min_time)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
-            (title, link, description, categories, image, start_time, end_time, location),
+            (title, link, description, categories, image, start_time, end_time, location, latitude, longitude, min_time),
         )
     return cur.lastrowid
 
 #enters a permanent into the db, one row per day of operation
-def create_permanent(
+def create_POI(
     title: str,
     day: str,
     open_time: str,
     close_time: str,
     location: str,
+    latitude: float,
+    longitude: float,
+    min_time: int,
     link: str = "",
     description: str = "",
     categories: str = "",
@@ -88,17 +101,34 @@ def create_permanent(
     with get_connection(db_path) as conn:
         cur = conn.execute(
             """
-            INSERT INTO permanents (title, link, description, categories, image, open_time, close_time, day, location)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO POIs (title, link, description, categories, image, open_time, close_time, day, location, latitude, longitude, min_time)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
-            (title, link, description, categories, image, open_time, close_time, day, location),
+            (title, link, description, categories, image, open_time, close_time, day, location, latitude, longitude, min_time),
         )
     return cur.lastrowid
 
-# takes in [free_time], the int representation of the duration the user is free in minutes.
-# Finds all quests in both tables that overlap with the time the user is free and returns them
-# in a list of dictionaries.
-def get_available_quests(free_time: int, db_path: str = DB_PATH) -> list:
+# haversine formula: calculates straight line distance in km between two coordinate pairs in degrees
+def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    R = 6371
+    lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+    return R * 2 * math.asin(math.sqrt(a))
+
+# estimates walking travel time in minutes assuming 5km/h
+def _travel_minutes(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    return (_haversine_km(lat1, lon1, lat2, lon2) / 5) * 60
+
+# takes in [free_time] in minutes, user coordinates, and finds all overlapping time quests from both
+# tables that the user can reasonably reach and spend [min_time] at before returning.
+def get_available_quests(
+    free_time: int,
+    user_lat: float,
+    user_lon: float,
+    db_path: str = DB_PATH,
+) -> list:
     now = datetime.datetime.now()
     now_unix = int(now.timestamp())
     end_unix = now_unix + (free_time * 60)
@@ -109,14 +139,21 @@ def get_available_quests(free_time: int, db_path: str = DB_PATH) -> list:
     with get_connection(db_path) as conn:
         rows = conn.execute(
             """
-            SELECT id, title, link, description, categories, image, location FROM events
+            SELECT id, title, link, description, categories, image, location, latitude, longitude, min_time FROM events
             WHERE start_time < ? AND end_time > ?
             UNION
-            SELECT id, title, link, description, categories, image, location FROM permanents
+            SELECT id, title, link, description, categories, image, location, latitude, longitude, min_time FROM POIs
             WHERE day = ? AND open_time < ? AND close_time > ?
             ORDER BY title
             """,
             (end_unix, now_unix, current_day, end_time, current_time),
         ).fetchall()
 
-    return [dict(r) for r in rows]
+    results = []
+    for row in rows:
+        quest = dict(row)
+        travel_time = _travel_minutes(user_lat, user_lon, quest["latitude"], quest["longitude"])
+        if (travel_time * 2) + quest["min_time"] <= free_time:
+            results.append(quest)
+
+    return results
