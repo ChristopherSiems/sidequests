@@ -13,6 +13,11 @@ router = APIRouter()
 async def quest(quest_request: QuestRequest):
   return Quest(
     **choices(
-      get_available_quests(quest_request.minutes, db_path="backend/data/events.db")
+      get_available_quests(
+        quest_request.minutes,
+        quest_request.location[0],
+        quest_request.location[1],
+        db_path="backend/data/events.db",
+      )
     )[0]
   )

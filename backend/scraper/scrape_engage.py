@@ -7,8 +7,7 @@ import feedparser
 from bs4 import BeautifulSoup
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-from database import init_db
-from llm_client import enrich_posts
+from backend.database import init_db
 
 # print(events_feed.keys())
 
@@ -100,7 +99,7 @@ def _save_to_db(posts, db_path):
         post.get("location"),
         42.250713,
         -71.822836,
-        0
+        0,
       )
       for post in posts
     ],
@@ -122,6 +121,7 @@ def scrape(feed_url="https://engage.clarku.edu/events.rss"):
 
   else:
     print("None")
+
 
 if __name__ == "__main__":
   scrape()

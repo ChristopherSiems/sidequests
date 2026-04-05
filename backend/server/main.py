@@ -4,16 +4,18 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from backend.scraper.scrape_engage import scrape
 from backend.server.routes.quest import router as quest_router
 
 
-def scrape():
-  print("running scrape")
+def call_scrape():
+  print("scraping")
+  scrape()
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-  scheduler.add_job(scrape, "cron", hour=20, minute=11)
+  scheduler.add_job(scrape, "cron", hour=20, minute=59)
   scheduler.start()
   yield
   scheduler.shutdown()
