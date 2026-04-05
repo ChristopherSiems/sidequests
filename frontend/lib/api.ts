@@ -16,4 +16,19 @@ const getQuest = async (time: number, location: [number, number]) => {
     }
 }
 
-export default getQuest;
+const addInteraction = async (embedding: number[], score: number) => {
+    console.log(embedding, score);
+    try {
+        const body = {
+            "embedding": embedding,
+            "score": score
+        }
+        await axios.post(`${BASE_URL}/interactions`, body);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+
+export { getQuest, addInteraction };
+

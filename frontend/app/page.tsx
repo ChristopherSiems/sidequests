@@ -2,7 +2,7 @@
 import LandingPage from "@/components/LandingPage";
 import QuestPage from "@/components/QuestPage";
 import { Quest } from "@/interfaces/interfaces";
-import getQuest from "@/lib/api";
+import { getQuest } from "@/lib/api";
 import { useState } from "react";
 import { useLocation } from "./hooks/hooks";
 

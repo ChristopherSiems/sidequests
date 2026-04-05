@@ -6,6 +6,7 @@ import { useState } from "react";
 import ExpandedQuestCard from "./ExpandedQuestCard";
 import { DirectionsMap } from "./DirectionsMap";
 import QuestHeader from "./QuestHeader";
+import { addInteraction } from "@/lib/api";
 interface QuestPageProps {
   setOnLanding: (onLanding: boolean) => void;
   quest: Quest | null;
@@ -25,10 +26,13 @@ export default function QuestPage({
   const swipeLeft = () => {
     getNewQuest();
     setExpandedQuest(false);
+    addInteraction(quest?.embedding || [], -1);
   };
+
   const swipeRight = () => {
     console.log("right");
     setExpandedQuest(true);
+    addInteraction(quest?.embedding || [], 1);
   };
   const handlers = useSwipeable({
     onSwipedLeft: swipeLeft,
