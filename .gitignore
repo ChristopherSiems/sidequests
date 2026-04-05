@@ -2,4 +2,4 @@ backend/data/
 __pycache__/
 *.pyc
 backend/.venv
-quests.db
+*.db
