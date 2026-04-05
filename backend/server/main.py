@@ -4,14 +4,12 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.scraper.scrape_engage import scrape
 from backend.server.routes.pois import router as pois_router
 from backend.server.routes.quest import router as quest_router
 
-
 # def call_scrape():
-  # print("scraping")
-  # scrape()
+# print("scraping")
+# scrape()
 
 
 @asynccontextmanager
@@ -27,9 +25,7 @@ app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
   CORSMiddleware,
-  allow_origins=[
-    "http://localhost:3000",
-  ],
+  allow_origins=["http://localhost:3000", "https://sidequests-ten.vercel.app/"],
   allow_credentials=True,
   allow_methods=["*"],
   allow_headers=["*"],
