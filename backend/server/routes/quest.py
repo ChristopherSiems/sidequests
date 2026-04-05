@@ -19,6 +19,10 @@ async def quests(quest_request: QuestRequest) -> Quest | list:
     quest_request.location[1],
     db_path="backend/data/quests.db",
   )
+
+  if quests == []:
+    return None
+
   print("quests", quests)
   quest = choices(quests)
 
