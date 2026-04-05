@@ -39,9 +39,11 @@ Examples:
 - "Basketball game at the Kneller" -> "Attend the Basketball Game at the Kneller"
 - "CS Club weekly meeting" -> "Attend the CS Club Weekly Meeting"
 - "5K charity run" -> "Complete the 5K Charity Run"
+- "Clark University Rapid Response Weekly Meeting" -> "N/A"
 - "Open mic night" -> "Perform at Open Mic Night"
 - "Study hall session" -> "Join the Study Hall Session"
 - "Hackathon kickoff" -> "Participate in the Hackathon Kickoff"
+- "SASA E-Board Meeting" -> "N/A"
 
 Before you send your response, reread your quest title. If it is not clear from the title what the event is, you should return a quest title of "N/A" and a time_category of null. 
 
