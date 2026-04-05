@@ -3,8 +3,11 @@ from contextlib import contextmanager
 import datetime
 import math
 import json
+import os
 
-DB_PATH = "quests.db"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "data", "quests.db")
+os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
 
 @contextmanager
 def get_connection(db_path: str = DB_PATH):

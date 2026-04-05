@@ -84,6 +84,8 @@ def get_coordinates(address: str):
             else:
                 raise ValueError(f"'{address}' geocoded too far ({km:.1f}km from Clark)")
             # We return a formatted version of the address Google found
+        else:
+            raise ValueError(f"Could not geocode '{address}'")
     except Exception:
         pass
     
