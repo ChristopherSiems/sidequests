@@ -8,17 +8,27 @@ from bs4 import BeautifulSoup
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from database import init_db
+from llm_client import enrich_posts
 
 # print(events_feed.keys())
 
 
 def get_posts_details(rss=None):
+<<<<<<< HEAD
   """
   Take link of rss feed as argument
   """
   if rss is not None:
     # parsing blog feed
     blog_feed = blog_feed = feedparser.parse(rss)
+=======
+	"""
+	Take link of rss feed as argument
+	"""
+	if rss is not None:
+		# parsing blog feed
+		blog_feed = feedparser.parse(rss)
+>>>>>>> 42fb093 (Begin integrating scraper with calls to local LLM)
 
     # getting lists of blog entries via .entries
     posts = blog_feed.entries
