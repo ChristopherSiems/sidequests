@@ -139,10 +139,10 @@ def get_available_quests(
     with get_connection(db_path) as conn:
         rows = conn.execute(
             """
-            SELECT id, title, link, description, categories, image, location, latitude, longitude, min_time FROM events
+            SELECT id, title, link, description, categories, image, location, latitude, longitude, min_time, start_time, end_time FROM events
             WHERE start_time < ? AND end_time > ?
             UNION
-            SELECT id, title, link, description, categories, image, location, latitude, longitude, min_time FROM POIs
+            SELECT id, title, link, description, categories, image, location, latitude, longitude, min_time, open_time, close_time FROM POIs
             WHERE day = ? AND open_time < ? AND close_time > ?
             ORDER BY title
             """,
