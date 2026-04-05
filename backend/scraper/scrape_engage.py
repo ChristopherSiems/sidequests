@@ -2,6 +2,8 @@ import os
 import sqlite3
 import sys
 from datetime import datetime
+import json
+from backend.scraper.embed import attach_embeddings_to_quests
 
 import feedparser
 from bs4 import BeautifulSoup
@@ -86,8 +88,8 @@ def _save_to_db(posts, db_path):
   cur.executemany(
     """
 		INSERT INTO events
-		(title, link, description, categories, image, start_time, end_time, location, latitude, longitude, min_time)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		(title, link, description, categories, image, start_time, end_time, location, latitude, longitude, min_time, embedding)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	""",
     [
       (
@@ -102,6 +104,7 @@ def _save_to_db(posts, db_path):
         42.250713,
         -71.822836,
         post.get("min_time", 0),
+        json.dumps(post.get("embedding", []))
       )
       for post in posts
       if post.get("min_time", 0) > 0 and post.get("title") != "N/A"
@@ -140,6 +143,7 @@ def scrape(feed_url="https://engage.clarku.edu/events.rss"):
     if data is not None:
       data = questify_posts(data)
       data = _apply_min_time(data)
+      data = attach_embeddings_to_quests(data)
       db_path = os.path.join(os.path.dirname(__file__), "../data/quests.db")
       _save_to_db(data, db_path)
       # entry = data["posts"][0]
