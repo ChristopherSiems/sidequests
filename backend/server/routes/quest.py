@@ -17,7 +17,7 @@ async def quest(quest_request: QuestRequest):
         quest_request.minutes,
         quest_request.location[0],
         quest_request.location[1],
-        db_path="backend/data/events.db",
+        db_path="backend/data/quests.db",
       )
     )[0]
   )
