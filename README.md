@@ -4,7 +4,6 @@
 
 # 🗺️ [Website](https://www.clarkquests.com/)
 
-# [GitHub](https://github.com/ChristopherSiems/sidequests)
 
 ## Inspiration
 We were inspired by two adjacent issues. 
