@@ -518,7 +518,7 @@
         "image": "",
         "latitude": 42.2507269,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Robert Goddard Memorial, Worcester, MA",
         "longitude": -71.823902,
         "min_time": 300,
         "open_time": "00:00",
@@ -533,7 +533,7 @@
         "image": "",
         "latitude": 42.2507269,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Robert Goddard Memorial, Worcester, MA",
         "longitude": -71.823902,
         "min_time": 300,
         "open_time": "00:00",
@@ -548,7 +548,7 @@
         "image": "",
         "latitude": 42.2507269,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Robert Goddard Memorial, Worcester, MA",
         "longitude": -71.823902,
         "min_time": 300,
         "open_time": "00:00",
@@ -563,7 +563,7 @@
         "image": "",
         "latitude": 42.2507269,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Robert Goddard Memorial, Worcester, MA",
         "longitude": -71.823902,
         "min_time": 300,
         "open_time": "00:00",
@@ -578,7 +578,7 @@
         "image": "",
         "latitude": 42.2507269,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Robert Goddard Memorial, Worcester, MA",
         "longitude": -71.823902,
         "min_time": 300,
         "open_time": "00:00",
@@ -593,7 +593,7 @@
         "image": "",
         "latitude": 42.2507269,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Robert Goddard Memorial, Worcester, MA",
         "longitude": -71.823902,
         "min_time": 300,
         "open_time": "00:00",
@@ -608,7 +608,7 @@
         "image": "",
         "latitude": 42.2507269,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Robert Goddard Memorial, Worcester, MA",
         "longitude": -71.823902,
         "min_time": 300,
         "open_time": "00:00",
@@ -623,7 +623,7 @@
         "image": "",
         "latitude": 42.251533,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Goddard Library, Clark University, Worcester, MA 01610",
         "longitude": -71.8229203,
         "min_time": 600,
         "open_time": "00:00",
@@ -638,7 +638,7 @@
         "image": "",
         "latitude": 42.251533,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Goddard Library, Clark University, Worcester, MA 01610",
         "longitude": -71.8229203,
         "min_time": 600,
         "open_time": "00:00",
@@ -653,7 +653,7 @@
         "image": "",
         "latitude": 42.251533,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Goddard Library, Clark University, Worcester, MA 01610",
         "longitude": -71.8229203,
         "min_time": 600,
         "open_time": "00:00",
@@ -668,7 +668,7 @@
         "image": "",
         "latitude": 42.251533,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Goddard Library, Clark University, Worcester, MA 01610",
         "longitude": -71.8229203,
         "min_time": 600,
         "open_time": "00:00",
@@ -683,7 +683,7 @@
         "image": "",
         "latitude": 42.251533,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Goddard Library, Clark University, Worcester, MA 01610",
         "longitude": -71.8229203,
         "min_time": 600,
         "open_time": "00:00",
@@ -698,7 +698,7 @@
         "image": "",
         "latitude": 42.251533,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Goddard Library, Clark University, Worcester, MA 01610",
         "longitude": -71.8229203,
         "min_time": 600,
         "open_time": "00:00",
@@ -713,7 +713,7 @@
         "image": "",
         "latitude": 42.251533,
         "link": "",
-        "location": "Clark University, Worcester, MA 01610",
+        "location": "Goddard Library, Clark University, Worcester, MA 01610",
         "longitude": -71.8229203,
         "min_time": 600,
         "open_time": "00:00",
@@ -1163,311 +1163,157 @@
     {
     "close_time": "22:00",
     "day": "Monday",
-    "latitude": 42.2513,
-    "link": "",
-    "location": "950 Main St, Worcester, MA 01610",
-    "longitude": -71.8238,
-    "min_time": 600,
-    "open_time": "08:00",
-    "title": "Admire the historic architecture of Jonas Clark Hall"
-    },
-    {
-    "close_time": "22:00",
-    "day": "Tuesday",
-    "latitude": 42.2513,
-    "link": "",
-    "location": "950 Main St, Worcester, MA 01610",
-    "longitude": -71.8238,
-    "min_time": 600,
-    "open_time": "08:00",
-    "title": "Admire the historic architecture of Jonas Clark Hall"
-    },
-    {
-    "close_time": "22:00",
-    "day": "Wednesday",
-    "latitude": 42.2513,
-    "link": "",
-    "location": "950 Main St, Worcester, MA 01610",
-    "longitude": -71.8238,
-    "min_time": 600,
-    "open_time": "08:00",
-    "title": "Admire the historic architecture of Jonas Clark Hall"
-    },
-    {
-    "close_time": "22:00",
-    "day": "Thursday",
-    "latitude": 42.2513,
-    "link": "",
-    "location": "950 Main St, Worcester, MA 01610",
-    "longitude": -71.8238,
-    "min_time": 600,
-    "open_time": "08:00",
-    "title": "Admire the historic architecture of Jonas Clark Hall"
-    },
-    {
-    "close_time": "22:00",
-    "day": "Friday",
-    "latitude": 42.2513,
-    "link": "",
-    "location": "950 Main St, Worcester, MA 01610",
-    "longitude": -71.8238,
-    "min_time": 600,
-    "open_time": "08:00",
-    "title": "Admire the historic architecture of Jonas Clark Hall"
-    },
-    {
-    "close_time": "22:00",
-    "day": "Saturday",
-    "latitude": 42.2513,
-    "link": "",
-    "location": "950 Main St, Worcester, MA 01610",
-    "longitude": -71.8238,
-    "min_time": 600,
-    "open_time": "08:00",
-    "title": "Admire the historic architecture of Jonas Clark Hall"
-    },
-    {
-    "close_time": "22:00",
-    "day": "Sunday",
-    "latitude": 42.2513,
-    "link": "",
-    "location": "950 Main St, Worcester, MA 01610",
-    "longitude": -71.8238,
-    "min_time": 600,
-    "open_time": "08:00",
-    "title": "Admire the historic architecture of Jonas Clark Hall"
-    },
-    {
-    "close_time": "22:00",
-    "day": "Monday",
     "latitude": 42.2511,
     "link": "https://www.clarku.edu/library/",
-    "location": "950 Main St, Worcester, MA 01610",
+    "location": "Goddard Library, Clark University, Worcester, MA 01610",
     "longitude": -71.8230,
     "min_time": 900,
     "open_time": "08:00",
-    "title": "Find a moment of zen in the Goddard Library Courtyard"
+    "title": "Find a moment of zen reading in the Goddard Library"
     },
     {
     "close_time": "22:00",
     "day": "Tuesday",
     "latitude": 42.2511,
     "link": "https://www.clarku.edu/library/",
-    "location": "950 Main St, Worcester, MA 01610",
+    "location": "Goddard Library, Clark University, Worcester, MA 01610",
     "longitude": -71.8230,
     "min_time": 900,
     "open_time": "08:00",
-    "title": "Find a moment of zen in the Goddard Library Courtyard"
+    "title": "Find a moment of zen reading in the Goddard Library"
     },
     {
     "close_time": "22:00",
     "day": "Wednesday",
     "latitude": 42.2511,
     "link": "https://www.clarku.edu/library/",
-    "location": "950 Main St, Worcester, MA 01610",
+    "location": "Goddard Library, Clark University, Worcester, MA 01610",
     "longitude": -71.8230,
     "min_time": 900,
     "open_time": "08:00",
-    "title": "Find a moment of zen in the Goddard Library Courtyard"
+    "title": "Find a moment of zen reading in the Goddard Library"
     },
     {
     "close_time": "22:00",
     "day": "Thursday",
     "latitude": 42.2511,
     "link": "https://www.clarku.edu/library/",
-    "location": "950 Main St, Worcester, MA 01610",
+    "location": "Goddard Library, Clark University, Worcester, MA 01610",
     "longitude": -71.8230,
     "min_time": 900,
     "open_time": "08:00",
-    "title": "Find a moment of zen in the Goddard Library Courtyard"
+    "title": "Find a moment of zen reading in the Goddard Library"
     },
     {
     "close_time": "22:00",
     "day": "Friday",
     "latitude": 42.2511,
     "link": "https://www.clarku.edu/library/",
-    "location": "950 Main St, Worcester, MA 01610",
+    "location": "Goddard Library, Clark University, Worcester, MA 01610",
     "longitude": -71.8230,
     "min_time": 900,
     "open_time": "08:00",
-    "title": "Find a moment of zen in the Goddard Library Courtyard"
+    "title": "Find a moment of zen reading in the Goddard Library"
     },
     {
     "close_time": "22:00",
     "day": "Saturday",
     "latitude": 42.2511,
     "link": "https://www.clarku.edu/library/",
-    "location": "950 Main St, Worcester, MA 01610",
+    "location": "Goddard Library, Clark University, Worcester, MA 01610",
     "longitude": -71.8230,
     "min_time": 900,
     "open_time": "08:00",
-    "title": "Find a moment of zen in the Goddard Library Courtyard"
+    "title": "Find a moment of zen reading in the Goddard Library"
     },
     {
     "close_time": "22:00",
     "day": "Sunday",
     "latitude": 42.2511,
     "link": "https://www.clarku.edu/library/",
-    "location": "950 Main St, Worcester, MA 01610",
+    "location": "Goddard Library, Clark University, Worcester, MA 01610",
     "longitude": -71.8230,
     "min_time": 900,
     "open_time": "08:00",
-    "title": "Find a moment of zen in the Goddard Library Courtyard"
+    "title": "Find a moment of zen reading in the Goddard Library"
     },
     {
     "close_time": "22:00",
     "day": "Monday",
     "latitude": 42.2562,
-    "link": "https://dalatpizza.com/",
+    "link": "",
     "location": "425 Park Ave, Worcester, MA 01610",
     "longitude": -71.8288,
     "min_time": 1200,
     "open_time": "11:00",
-    "title": "Try the unique fusion at Da Lat Specialty Pizza"
+    "title": "Try great pho at Dalat"
     },
     {
     "close_time": "22:00",
     "day": "Tuesday",
     "latitude": 42.2562,
-    "link": "https://dalatpizza.com/",
+    "link": "",
     "location": "425 Park Ave, Worcester, MA 01610",
     "longitude": -71.8288,
     "min_time": 1200,
     "open_time": "11:00",
-    "title": "Try the unique fusion at Da Lat Specialty Pizza"
+    "title": "Try great pho at Dalat"
     },
     {
     "close_time": "22:00",
     "day": "Wednesday",
     "latitude": 42.2562,
-    "link": "https://dalatpizza.com/",
+    "link": "",
     "location": "425 Park Ave, Worcester, MA 01610",
     "longitude": -71.8288,
     "min_time": 1200,
     "open_time": "11:00",
-    "title": "Try the unique fusion at Da Lat Specialty Pizza"
+    "title": "Try great pho at Dalat"
     },
     {
     "close_time": "22:00",
     "day": "Thursday",
     "latitude": 42.2562,
-    "link": "https://dalatpizza.com/",
+    "link": "",
     "location": "425 Park Ave, Worcester, MA 01610",
     "longitude": -71.8288,
     "min_time": 1200,
     "open_time": "11:00",
-    "title": "Try the unique fusion at Da Lat Specialty Pizza"
+    "title": "Try great pho at Dalat"
     },
     {
     "close_time": "22:00",
     "day": "Friday",
     "latitude": 42.2562,
-    "link": "https://dalatpizza.com/",
+    "link": "",
     "location": "425 Park Ave, Worcester, MA 01610",
     "longitude": -71.8288,
     "min_time": 1200,
     "open_time": "11:00",
-    "title": "Try the unique fusion at Da Lat Specialty Pizza"
+    "title": "Try great pho at Dalat"
     },
     {
     "close_time": "22:00",
     "day": "Saturday",
     "latitude": 42.2562,
-    "link": "https://dalatpizza.com/",
+    "link": "",
     "location": "425 Park Ave, Worcester, MA 01610",
     "longitude": -71.8288,
     "min_time": 1200,
     "open_time": "11:00",
-    "title": "Try the unique fusion at Da Lat Specialty Pizza"
+    "title": "Try great pho at Dalat"
     },
     {
     "close_time": "22:00",
     "day": "Sunday",
     "latitude": 42.2562,
-    "link": "https://dalatpizza.com/",
+    "link": "",
     "location": "425 Park Ave, Worcester, MA 01610",
     "longitude": -71.8288,
     "min_time": 1200,
     "open_time": "11:00",
-    "title": "Try the unique fusion at Da Lat Specialty Pizza"
+    "title": "Try great pho at Dalat"
     },
-    {
-    "close_time": "23:59",
-    "day": "Monday",
-    "latitude": 42.2520,
-    "link": "",
-    "location": "Woodland St & Charlotte St, Worcester, MA 01610",
-    "longitude": -71.8250,
-    "min_time": 300,
-    "open_time": "00:00",
-    "title": "Trade a book at the Clark-area Little Free Library"
-    },
-    {
-    "close_time": "23:59",
-    "day": "Tuesday",
-    "latitude": 42.2520,
-    "link": "",
-    "location": "Woodland St & Charlotte St, Worcester, MA 01610",
-    "longitude": -71.8250,
-    "min_time": 300,
-    "open_time": "00:00",
-    "title": "Trade a book at the Clark-area Little Free Library"
-    },
-    {
-    "close_time": "23:59",
-    "day": "Wednesday",
-    "latitude": 42.2520,
-    "link": "",
-    "location": "Woodland St & Charlotte St, Worcester, MA 01610",
-    "longitude": -71.8250,
-    "min_time": 300,
-    "open_time": "00:00",
-    "title": "Trade a book at the Clark-area Little Free Library"
-    },
-    {
-    "close_time": "23:59",
-    "day": "Thursday",
-    "latitude": 42.2520,
-    "link": "",
-    "location": "Woodland St & Charlotte St, Worcester, MA 01610",
-    "longitude": -71.8250,
-    "min_time": 300,
-    "open_time": "00:00",
-    "title": "Trade a book at the Clark-area Little Free Library"
-    },
-    {
-    "close_time": "23:59",
-    "day": "Friday",
-    "latitude": 42.2520,
-    "link": "",
-    "location": "Woodland St & Charlotte St, Worcester, MA 01610",
-    "longitude": -71.8250,
-    "min_time": 300,
-    "open_time": "00:00",
-    "title": "Trade a book at the Clark-area Little Free Library"
-    },
-    {
-    "close_time": "23:59",
-    "day": "Saturday",
-    "latitude": 42.2520,
-    "link": "",
-    "location": "Woodland St & Charlotte St, Worcester, MA 01610",
-    "longitude": -71.8250,
-    "min_time": 300,
-    "open_time": "00:00",
-    "title": "Trade a book at the Clark-area Little Free Library"
-    },
-    {
-    "close_time": "23:59",
-    "day": "Sunday",
-    "latitude": 42.2520,
-    "link": "",
-    "location": "Woodland St & Charlotte St, Worcester, MA 01610",
-    "longitude": -71.8250,
-    "min_time": 300,
-    "open_time": "00:00",
-    "title": "Trade a book at the Clark-area Little Free Library"
-    }, 
     {
             "close_time": "23:59",
             "day": "Monday",
@@ -1633,7 +1479,7 @@
                 "longitude": -71.8201345,
                 "min_time": 900,
                 "open_time": "00:00",
-                "title": "Quest: Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
+                "title": "Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
             },
             {
                 "close_time": "23:59",
@@ -1644,7 +1490,7 @@
                 "longitude": -71.8201345,
                 "min_time": 900,
                 "open_time": "00:00",
-                "title": "Quest: Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
+                "title": "Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
             },
             {
                 "close_time": "23:59",
@@ -1655,7 +1501,7 @@
                 "longitude": -71.8201345,
                 "min_time": 900,
                 "open_time": "00:00",
-                "title": "Quest: Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
+                "title": "Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
             },
             {
                 "close_time": "23:59",
@@ -1666,7 +1512,7 @@
                 "longitude": -71.8201345,
                 "min_time": 900,
                 "open_time": "00:00",
-                "title": "Quest: Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
+                "title": "Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
             },
             {
                 "close_time": "23:59",
@@ -1677,7 +1523,7 @@
                 "longitude": -71.8201345,
                 "min_time": 900,
                 "open_time": "00:00",
-                "title": "Quest: Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
+                "title": "Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
             },
             {
                 "close_time": "23:59",
@@ -1688,7 +1534,7 @@
                 "longitude": -71.8201345,
                 "min_time": 900,
                 "open_time": "00:00",
-                "title": "Quest: Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
+                "title": "Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
             },
             {
                 "close_time": "23:59",
@@ -1699,7 +1545,7 @@
                 "longitude": -71.8201345,
                 "min_time": 900,
                 "open_time": "00:00",
-                "title": "Quest: Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
+                "title": "Visit the Wade H. Hill House, home of the industrialist who made Worcester the 'Envelope Capital'"
             },
             {
                 "close_time": "23:59",
@@ -1710,7 +1556,7 @@
                 "longitude": -71.8228,
                 "min_time": 600,
                 "open_time": "00:00",
-                "title": "Quest: Stand before the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
+                "title": "Visit the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
             },
             {
                 "close_time": "23:59",
@@ -1721,7 +1567,7 @@
                 "longitude": -71.8228,
                 "min_time": 600,
                 "open_time": "00:00",
-                "title": "Quest: Stand before the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
+                "title": "Visit the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
             },
             {
                 "close_time": "23:59",
@@ -1732,7 +1578,7 @@
                 "longitude": -71.8228,
                 "min_time": 600,
                 "open_time": "00:00",
-                "title": "Quest: Stand before the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
+                "title": "Visit the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
             },
             {
                 "close_time": "23:59",
@@ -1743,7 +1589,7 @@
                 "longitude": -71.8228,
                 "min_time": 600,
                 "open_time": "00:00",
-                "title": "Quest: Stand before the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
+                "title": "Visit the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
             },
             {
                 "close_time": "23:59",
@@ -1754,7 +1600,7 @@
                 "longitude": -71.8228,
                 "min_time": 600,
                 "open_time": "00:00",
-                "title": "Quest: Stand before the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
+                "title": "Visit the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
             },
             {
                 "close_time": "23:59",
@@ -1765,7 +1611,7 @@
                 "longitude": -71.8228,
                 "min_time": 600,
                 "open_time": "00:00",
-                "title": "Quest: Stand before the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
+                "title": "Visit the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
             },
             {
                 "close_time": "23:59",
@@ -1776,7 +1622,7 @@
                 "longitude": -71.8228,
                 "min_time": 600,
                 "open_time": "00:00",
-                "title": "Quest: Stand before the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
+                "title": "Visit the Royal Worcester Corset Co. Factory, once the world's largest corset manufacturer"
             },
             {
                 "close_time": "23:59",
@@ -1787,7 +1633,7 @@
                 "longitude": -71.8028,
                 "min_time": 300,
                 "open_time": "00:00",
-                "title": "Quest: Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
+                "title": "Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
             },
             {
                 "close_time": "23:59",
@@ -1798,7 +1644,7 @@
                 "longitude": -71.8028,
                 "min_time": 300,
                 "open_time": "00:00",
-                "title": "Quest: Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
+                "title": "Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
             },
             {
                 "close_time": "23:59",
@@ -1809,7 +1655,7 @@
                 "longitude": -71.8028,
                 "min_time": 300,
                 "open_time": "00:00",
-                "title": "Quest: Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
+                "title": "Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
             },
             {
                 "close_time": "23:59",
@@ -1820,7 +1666,7 @@
                 "longitude": -71.8028,
                 "min_time": 300,
                 "open_time": "00:00",
-                "title": "Quest: Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
+                "title": "Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
             },
             {
                 "close_time": "23:59",
@@ -1831,7 +1677,7 @@
                 "longitude": -71.8028,
                 "min_time": 300,
                 "open_time": "00:00",
-                "title": "Quest: Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
+                "title": "Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
             },
             {
                 "close_time": "23:59",
@@ -1842,7 +1688,7 @@
                 "longitude": -71.8028,
                 "min_time": 300,
                 "open_time": "00:00",
-                "title": "Quest: Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
+                "title": "Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
             },
             {
                 "close_time": "23:59",
@@ -1853,6 +1699,258 @@
                 "longitude": -71.8028,
                 "min_time": 300,
                 "open_time": "00:00",
-                "title": "Quest: Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
+                "title": "Find the site of the 1854 Butman Riot, where Worcester citizens defied the Fugitive Slave Act"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Monday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "The Green, Clark University, Worcester, MA 01610",
+                "longitude": -71.8234,
+                "min_time": 180,
+                "open_time": "00:00",
+                "title": "Find a pretty flower or a unique leaf on the Clark Green"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Tuesday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "The Green, Clark University, Worcester, MA 01610",
+                "longitude": -71.8234,
+                "min_time": 180,
+                "open_time": "00:00",
+                "title": "Find a pretty flower or a unique leaf on the Clark Green"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Wednesday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "The Green, Clark University, Worcester, MA 01610",
+                "longitude": -71.8234,
+                "min_time": 180,
+                "open_time": "00:00",
+                "title": "Find a pretty flower or a unique leaf on the Clark Green"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Thursday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "The Green, Clark University, Worcester, MA 01610",
+                "longitude": -71.8234,
+                "min_time": 180,
+                "open_time": "00:00",
+                "title": "Find a pretty flower or a unique leaf on the Clark Green"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Friday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "The Green, Clark University, Worcester, MA 01610",
+                "longitude": -71.8234,
+                "min_time": 180,
+                "open_time": "00:00",
+                "title": "Find a pretty flower or a unique leaf on the Clark Green"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Saturday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "The Green, Clark University, Worcester, MA 01610",
+                "longitude": -71.8234,
+                "min_time": 180,
+                "open_time": "00:00",
+                "title": "Find a pretty flower or a unique leaf on the Clark Green"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Sunday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "The Green, Clark University, Worcester, MA 01610",
+                "longitude": -71.8234,
+                "min_time": 180,
+                "open_time": "00:00",
+                "title": "Find a pretty flower or a unique leaf on the Clark Green"
+            },
+            {
+            "close_time": "22:00",
+            "day": "Monday",
+            "latitude": 42.2497,
+            "link": "",
+            "location": "University Park, 965 Main St, Worcester, MA 01603",
+            "longitude": -71.8197,
+            "min_time": 120,
+            "open_time": "06:00",
+            "title": "Pick up a piece of trash in University Park and find a bin"
+            },
+            {
+                "close_time": "22:00",
+                "day": "Tuesday",
+                "latitude": 42.2497,
+                "link": "",
+                "location": "University Park, 965 Main St, Worcester, MA 01603",
+                "longitude": -71.8197,
+                "min_time": 120,
+                "open_time": "06:00",
+                "title": "Pick up a piece of trash in University Park and find a bin"
+            },
+            {
+                "close_time": "22:00",
+                "day": "Wednesday",
+                "latitude": 42.2497,
+                "link": "",
+                "location": "University Park, 965 Main St, Worcester, MA 01603",
+                "longitude": -71.8197,
+                "min_time": 120,
+                "open_time": "06:00",
+                "title": "Pick up a piece of trash in University Park and find a bin"
+            },
+            {
+                "close_time": "22:00",
+                "day": "Thursday",
+                "latitude": 42.2497,
+                "link": "",
+                "location": "University Park, 965 Main St, Worcester, MA 01603",
+                "longitude": -71.8197,
+                "min_time": 120,
+                "open_time": "06:00",
+                "title": "Pick up a piece of trash in University Park and find a bin"
+            },
+            {
+                "close_time": "22:00",
+                "day": "Friday",
+                "latitude": 42.2497,
+                "link": "",
+                "location": "University Park, 965 Main St, Worcester, MA 01603",
+                "longitude": -71.8197,
+                "min_time": 120,
+                "open_time": "06:00",
+                "title": "Pick up a piece of trash in University Park and find a bin"
+            },
+            {
+                "close_time": "22:00",
+                "day": "Saturday",
+                "latitude": 42.2497,
+                "link": "",
+                "location": "University Park, 965 Main St, Worcester, MA 01603",
+                "longitude": -71.8197,
+                "min_time": 120,
+                "open_time": "06:00",
+                "title": "Pick up a piece of trash in University Park and find a bin"
+            },
+            {
+                "close_time": "22:00",
+                "day": "Sunday",
+                "latitude": 42.2497,
+                "link": "",
+                "location": "University Park, 965 Main St, Worcester, MA 01603",
+                "longitude": -71.8197,
+                "min_time": 120,
+                "open_time": "06:00",
+                "title": "Pick up a piece of trash in University Park and find a bin"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Monday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "Red Square, Clark University",
+                "longitude": -71.8230,
+                "min_time": 300,
+                "open_time": "00:00",
+                "title": "Leave a quick chalk doodle or a positive message in Red Square"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Tuesday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "Red Square, Clark University",
+                "longitude": -71.8230,
+                "min_time": 300,
+                "open_time": "00:00",
+                "title": "Leave a quick chalk doodle or a positive message in Red Square"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Wednesday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "Red Square, Clark University",
+                "longitude": -71.8230,
+                "min_time": 300,
+                "open_time": "00:00",
+                "title": "Leave a quick chalk doodle or a positive message in Red Square"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Thursday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "Red Square, Clark University",
+                "longitude": -71.8230,
+                "min_time": 300,
+                "open_time": "00:00",
+                "title": "Leave a quick chalk doodle or a positive message in Red Square"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Friday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "Red Square, Clark University",
+                "longitude": -71.8230,
+                "min_time": 300,
+                "open_time": "00:00",
+                "title": "Leave a quick chalk doodle or a positive message in Red Square"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Saturday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "Red Square, Clark University",
+                "longitude": -71.8230,
+                "min_time": 300,
+                "open_time": "00:00",
+                "title": "Leave a quick chalk doodle or a positive message in Red Square"
+            },
+            {
+                "close_time": "23:59",
+                "day": "Sunday",
+                "latitude": 42.2512,
+                "link": "",
+                "location": "Red Square, Clark University",
+                "longitude": -71.8230,
+                "min_time": 300,
+                "open_time": "00:00",
+                "title": "Leave a quick chalk doodle or a positive message in Red Square"
+            },
+            {
+                "close_time": "23:00", "day": "Monday", "latitude": 42.2510, "link": "", "location": "Higgins University Center, Clark University", "longitude": -71.8232, "min_time": 240, "open_time": "07:30", "title": "Find a flyer for a club or event you've never heard of on the UC bulletin board"
+            },
+            {
+                "close_time": "23:00", "day": "Tuesday", "latitude": 42.2510, "link": "", "location": "Higgins University Center, Clark University", "longitude": -71.8232, "min_time": 240, "open_time": "07:30", "title": "Find a flyer for a club or event you've never heard of on the UC bulletin board"
+            },
+            {
+                "close_time": "23:00", "day": "Wednesday", "latitude": 42.2510, "link": "", "location": "Higgins University Center, Clark University", "longitude": -71.8232, "min_time": 240, "open_time": "07:30", "title": "Find a flyer for a club or event you've never heard of on the UC bulletin board"
+            },
+            {
+                "close_time": "23:00", "day": "Thursday", "latitude": 42.2510, "link": "", "location": "Higgins University Center, Clark University", "longitude": -71.8232, "min_time": 240, "open_time": "07:30", "title": "Find a flyer for a club or event you've never heard of on the UC bulletin board"
+            },
+            {
+                "close_time": "23:00", "day": "Friday", "latitude": 42.2510, "link": "", "location": "Higgins University Center, Clark University", "longitude": -71.8232, "min_time": 240, "open_time": "07:30", "title": "Find a flyer for a club or event you've never heard of on the UC bulletin board"
+            },
+            {
+                "close_time": "23:00", "day": "Saturday", "latitude": 42.2510, "link": "", "location": "Higgins University Center, Clark University", "longitude": -71.8232, "min_time": 240, "open_time": "09:00", "title": "Find a flyer for a club or event you've never heard of on the UC bulletin board"
+            },
+            {
+                "close_time": "23:00", "day": "Sunday", "latitude": 42.2510, "link": "", "location": "Higgins University Center, Clark University", "longitude": -71.8232, "min_time": 240, "open_time": "09:00", "title": "Find a flyer for a club or event you've never heard of on the UC bulletin board"
             }
         ]
